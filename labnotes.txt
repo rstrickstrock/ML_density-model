@@ -1,0 +1,29 @@
+Soboldataset: 95% train, 5% test
+ Ia. >check results    - increase 5% to ??% 
+ Ib. >done.   - check range of sobol parameterspace vs reg. grid spaces // covers the same parameterspace?
+
+ Ia: (02.2_polynomial-regression/02.2_polynomial_regression_increase-testset.ipynb) between 5% and 20% it doesn't make a huge difference (?!)
+     How much Datapoints are needed? The RMSE/R2 noticeably gets worse after 80% used for testing (i.e. 20% used for training). 20% of 2005 (datapoints) is 401 datapoints. 400
+     is the minimum for training?
+ Ib: (01_prepare_data_basis/compare_databases.ipynb) grid1296 is smaller (larger min, lower max) than grid2401. grid2401 and sobol2048 cover the same space (sobol2048 is larger for max(SigH))
+
+Violinplot of of parameters vs density
+ II.    - seaborn
+
+sympy for (direct) funtction F(params) -> density ?
+
+Training:
+    - different random seeds
+    - 20-30 retrainings of the model
+    - differences in model performance for using grid/sobol databases // which is better?
+    - 2nd Soboldatabase and try to reproduce model accuracy? For a more general statement if that method is good for this application/usecase?
+
+Ranking Correlation for Y_test vs Y_prod:
+    - does the model give the correct tendencies for evolutionary algos?
+    
+Surrogate for QM:
+    - accuracy?
+    - speedup? even if 1sec -> 0.01 sec per evaluation there could be a huge optimization potential
+
+
+                  !!!!!!! not longer updated, check the manuscript: https://www.overleaf.com/read/jqyhbwqxwbys#7f9bd0 !!!!!!!!
