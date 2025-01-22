@@ -4,6 +4,8 @@ from sklearn.metrics import mean_squared_error, r2_score
 
 import pandas as pd
 import numpy as np
+import os
+import shutil
 
 import pickle
 
@@ -88,7 +90,7 @@ for thisRatio in testSizes:
     X_test = pd.concat([X_test, X_1296, X_sobol1, X_sobol2], ignore_index=True)
     Y_test = pd.concat([Y_test, Y_1296, Y_sobol1, Y_sobol2], ignore_index=True)
     X_TEST2401 = X_test
-    Y_TEST2491 = Y_test
+    Y_TEST2401 = Y_test
     
     X_train, X_test, Y_train, Y_test = train_test_split(X_sobol1, Y_sobol1, test_size=thisRatio, random_state=rndInt)
     X_TRAINS1 = X_train
