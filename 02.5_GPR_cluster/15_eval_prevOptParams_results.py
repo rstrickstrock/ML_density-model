@@ -209,7 +209,7 @@ for i in range(0, len(dfCombinedData)):
     thisDiff_old = thisDiff
 #print(f'Entry with diff closest to 0:\n{dfEntry}\n')
 
-## linear regression for subset (based on previous plotting)
+## filter based on following constraints
 diffMax = 10
 diffMin = -10
 subsetDiff = dfCombinedData[dfCombinedData["diff"] <= diffMax]

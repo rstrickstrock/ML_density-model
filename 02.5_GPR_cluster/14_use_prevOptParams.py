@@ -4,13 +4,11 @@ from sklearn.gaussian_process.kernels import RBF
 from sklearn.gaussian_process.kernels import Matern
 from sklearn.gaussian_process.kernels import RationalQuadratic as RQ
 from sklearn.gaussian_process.kernels import ExpSineSquared as ESS
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, r2_score
+#from sklearn.model_selection import train_test_split
+#from sklearn.metrics import mean_squared_error, r2_score
+
 import pandas as pd
-import numpy as np
-from scipy import stats
-from matplotlib import pyplot as plt
-import time
+
 import pickle
 import os
 import glob
