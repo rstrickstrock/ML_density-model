@@ -141,65 +141,24 @@ axd["ESS"].set_ylim([minR2, maxR2])
 plt.tight_layout()
 plt.show()
 
-exit()
 
-axd["RMSEvsDiff"].set(xlabel="RMSE", ylabel="Diff")
-axd["RMSEvsDiff"].set_title("RMSE vs Diff", fontweight='bold')
-axd["RMSEvsDiff"].plot([0, 0], [diffMin, diffMax], ls='-', color='red', label='Zoom Range')
-axd["RMSEvsDiff"].legend()
-axd["ZoomRMSEvsDiff"].scatter(subsetDiff["rmse"], subsetDiff["diff"], label="RMSE vs Diff", c="#377eb8")
-axd["ZoomRMSEvsDiff"].legend()
-axd["ZoomRMSEvsDiff"].set(xlabel="RMSE", ylabel="Diff")
-axd["ZoomRMSEvsDiff"].set_title("Zoomed RMSE vs Diff", fontweight='bold')
-axd["DiffFiltered"].scatter(subsetDiff["rmse"], subsetDiff["r2"], label=f'{diffMin} <= diff <= {diffMax}', c="#377eb8")
-axd["DiffFiltered"].legend()
-axd["DiffFiltered"].set(xlabel="RMSE", ylabel="R2")
-axd["DiffFiltered"].set_title(f'RMSE vs R2 filtered by {diffMin}<=diff<={diffMax}', fontweight='bold')
 
-axd["R2vsDiff"].scatter(dfCombinedData["r2"], dfCombinedData["diff"], label="R2 vs Diff", c="#4daf4a")
-axd["R2vsDiff"].set(xlabel="R2", ylabel="Diff")
-axd["R2vsDiff"].set_title("R2 vs Diff", fontweight='bold')
-axd["R2vsDiff"].plot([0, 0], [diffMin, diffMax], ls='-', color='red', label='Zoom Range')
-axd["R2vsDiff"].legend()
-axd["ZoomR2vsDiff"].scatter(subsetDiff["r2"], subsetDiff["diff"], label="R2 vs Diff", c="#4daf4a")
-axd["ZoomR2vsDiff"].legend()
-axd["ZoomR2vsDiff"].set(xlabel="R2", ylabel="Diff")
-axd["ZoomR2vsDiff"].set_title("Zoomed R2 vs Diff", fontweight='bold')
-axd["ZoomR2vsDiff"].set_xlim([0, 1.0])
-#axd["ZoomR2vsDiff"].set_ylim([diffMin, diffMax])
-axd["RMSEFiltered"].scatter(subsetRMSE["r2"], subsetRMSE["diff"], label=f'{rmseMin} <= rmse <= {rmseMax}', c="#4daf4a")
-axd["RMSEFiltered"].legend()
-axd["RMSEFiltered"].set(xlabel="R2", ylabel="Diff")
-axd["RMSEFiltered"].set_title(f'R2 vs Diff filtered by rmse<={rmseMax}', fontweight='bold')
 
-axd["RMSEvsR2"].scatter(dfCombinedData["rmse"], dfCombinedData["r2"], label="RMSE vs R2", c="#852E02")
-axd["RMSEvsR2"].set(xlabel="RMSE", ylabel="R2")
-axd["RMSEvsR2"].set_title("RMSE vs R2", fontweight='bold')
-thisXMin = 15
-thisXMax = 50
-thisYMin = 0.7
-thisYMax = 1.0
-axd["RMSEvsR2"].plot([rmseMin, rmseMax], [0, 0], ls='-', color='red', label='Zoom Range')
-axd["RMSEvsR2"].legend()
-axd["ZoomRMSEvsR2"].scatter(subsetRMSE["rmse"], subsetRMSE["r2"], label="RMSE vs R2", c="#852E02")
-axd["ZoomRMSEvsR2"].legend()
-axd["ZoomRMSEvsR2"].set(xlabel="RMSE", ylabel="R2")
-axd["ZoomRMSEvsR2"].set_title("Zoomed RMSE vs R2", fontweight='bold')
-axd["R2Filtered"].scatter(subsetR2["rmse"], subsetR2["diff"], label=f'{r2Min} <= r2 <= {r2Max}', c="#852E02")
-axd["R2Filtered"].legend()
-axd["R2Filtered"].set(xlabel="RMSE", ylabel="Diff")
-axd["R2Filtered"].set_title(f'RMSE vs Diff filtered by {r2Min}<=r2<={r2Max}', fontweight='bold')
 
-X = subsetRMSER2["rmse"]
-Y = subsetRMSER2["r2"]
-Z = subsetRMSER2["diff"]
-cm = plt.cm.get_cmap('Accent')
-#scatter = axd["RMSER2Filtered"].scatter(X, Y, c=Z.to_numpy(), cmap=cm, vmin=-max(np.sqrt(np.power(Z.min(),2)), np.sqrt(np.power(Z.max(), 2))), vmax=max(np.sqrt(np.power(Z.min(),2)), np.sqrt(np.power(Z.max(), 2))))
-scatter = axd["RMSER2Filtered"].scatter(X, Y, c=Z.to_numpy(), cmap=cm, vmin=2*diffMin, vmax=diffMax)
-axd["RMSER2Filtered"].set(xlabel="RMSE", ylabel="R2")
-axd["RMSER2Filtered"].set_title(f'RMSE vs R2 filtered by {r2Min}<=r2<={r2Max} AND rmse<={rmseMax}, colorcoded by Diff ', fontweight='bold')
-cbar = fig.colorbar(scatter, ax=axd["RMSER2Filtered"], orientation='vertical')
-cbar.set_label("Diff")
 
-plt.tight_layout()
-plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
