@@ -294,7 +294,7 @@ if createCombinedDataFile:
       thisCombinedDataEntry = pd.DataFrame({"ratio":[thisRatio],
                                             "rndint":[thisRndInt],
                                             "dataset":[thisDataset],
-                                            "degree":[thisDegree]
+                                            "degree":[thisDegree],
                                             "rmse": [thisRMSE],
                                             "r2": [thisR2],
                                             "prediction":[thisPrediction],
