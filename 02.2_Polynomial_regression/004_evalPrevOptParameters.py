@@ -239,7 +239,14 @@ if createCombinedDataFile:
   
     ## find the corresponding model entry in dfStatistics
     try:
-      ratioSubset = dfStatistics[dfStatistics["ratio"] == thisRatio]
+      degreeSubset = dfStatistics[dfStatistics["degree"] == thisDegree]
+    except:
+      print(f'Could not get \'degreeSubset = dfStatistics[dfStatistics["degree"] == thisDegree]\' for\ndfStatistics = {dfStatistics}')
+    else:
+      #print(f'{degreeSubset}')
+      pass
+    try:
+      ratioSubset = degreeSubset[degreeSubset["ratio"] == thisRatio]
     except:
       print(f'Could not get \'ratioSubset = dfStatistics[dfStatistics["ratio"] == thisRatio]\' for\nthisPredictionEntry = {thisPredictionEntry}')
     else:
