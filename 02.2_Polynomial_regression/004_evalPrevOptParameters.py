@@ -44,7 +44,7 @@ else:
   xOpt = optParams.drop('density', axis=1)
   #print(f'{xOpt}')
   yOpt = optParams['density']
-  print(f'{yOpt}')
+  #print(f'{yOpt}')
   try:
     yOpt = float(yOpt.to_numpy())
   except:
@@ -53,6 +53,7 @@ else:
   dfPredictions = pd.DataFrame({"ratio":[],
                                 "rndint":[],
                                 "dataset":[],
+                                "degree":[],
                                 "prediction":[],
                                 "target":[],
                                 "diff":[]})
@@ -74,7 +75,7 @@ else:
     for modelFile in modelFiles:
       #print(f'{modelFile}')
       try:
-        thisRndInt = int(os.path.basename(modelFile).split("_")[3].split(".")[0])
+        thisRndInt = int(os.path.basename(modelFile).split("_")[3])
       except:
         print(f'Could not get RndInt for modelfile:\n{modelFile}')
       else:
@@ -88,7 +89,15 @@ else:
       else:
         #print(f'{thisDataset}')
         pass
-    
+        
+      try:
+        thisDegree = str(os.path.basename(modelFile).split("_")[4].split(".")[0][3:])
+      except:
+        print(f'Could not get thisDegree for modelfile:\n{modelFile}')
+      else:
+        #print(f'{thisDegree}')
+        pass
+        
       with open(modelFile, "rb") as thisFile:
         try:
           thisModel = pickle.load(thisFile)
@@ -112,6 +121,7 @@ else:
         newResultsEntry = pd.DataFrame({"ratio":[thisRatio],
                                         "rndint":[thisRndInt],
                                         "dataset":[thisDataset],
+                                        "degree":[thisDegree],
                                         "prediction":[thisPrediction],
                                         "target":[yOpt],
                                         "diff":[thisDiff]})
@@ -174,6 +184,7 @@ if createCombinedDataFile:
   dfCombinedData = pd.DataFrame({"ratio":[],
                                  "rndint":[],
                                  "dataset":[],
+                                 "degree":[],
                                  "rmse": [],
                                  "r2": [],
                                  "prediction":[],
@@ -221,6 +232,10 @@ if createCombinedDataFile:
       thisDataset = thisPredictionEntry["dataset"]
     except:
       print(f'Could not get \'thisDataset = thisPredictionEntry["dataset"]\' for\nthisPredictionEntry = {thisPredictionEntry}')
+    try:
+      thisDegree = thisPredictionEntry["degree"]
+    except:
+      print(f'Could not get \'thisDegree = thisPredictionEntry["degree"]\' for\nthisPredictionEntry = {thisPredictionEntry}')
   
     ## find the corresponding model entry in dfStatistics
     try:
@@ -279,6 +294,7 @@ if createCombinedDataFile:
       thisCombinedDataEntry = pd.DataFrame({"ratio":[thisRatio],
                                             "rndint":[thisRndInt],
                                             "dataset":[thisDataset],
+                                            "degree":[thisDegree]
                                             "rmse": [thisRMSE],
                                             "r2": [thisR2],
                                             "prediction":[thisPrediction],
