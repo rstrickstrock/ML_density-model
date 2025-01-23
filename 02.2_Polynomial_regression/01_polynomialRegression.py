@@ -1,6 +1,8 @@
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.pipeline import make_pipeline
 
 import pandas as pd
 import numpy as np
@@ -9,7 +11,8 @@ import shutil
 
 import pickle
 
-testmode = False
+
+testmode = True
 
 pwd = os.getcwd()
 ### create current working directory ###
@@ -27,6 +30,8 @@ os.mkdir(cwd)
 rndInts = [678, 147, 561, 237, 588, 951, 490, 395, 877, 297, 721, 711, 985, 171, 75, 16, 669, 530, 999, 794, 936, 111, 816, 968, 48, 986, 829, 996, 272, 759, 390, 930, 633, 928, 854, 554, 562, 78, 222, 294, 725, 582, 731, 249, 791, 35, 180, 510, 593, 634]
 
 testSizes = [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95]
+
+degrees = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 ## grid sampling 1296
 data1296 = pd.read_csv('CLEANED_gridsearch_1296.csv')
@@ -67,15 +72,19 @@ Y_sobol2 = data_sobol2['density']
 dfStatistics = pd.DataFrame({"ratio": [],
                              "rndint": [],
                              "dataset": [],
+                             "degree": [],
                              "rmse": [],
                              "r2": []})
 
 for thisRatio in testSizes:
+  trainSize = 1-thisRatio
+  print(f'Training PolyRegr Models with {trainSize}% of the dataset.\n')
   tmp_cwd = os.path.join(cwd, str(thisRatio))
   os.mkdir(tmp_cwd)
   os.chdir(tmp_cwd)
   
   for rndInt in rndInts:
+    print(f'.')
     X_train, X_test, Y_train, Y_test = train_test_split(X_1296, Y_1296, test_size=thisRatio, random_state=rndInt)
     X_TRAIN1296 = X_train
     Y_TRAIN1296 = Y_train
@@ -108,61 +117,67 @@ for thisRatio in testSizes:
     X_TESTS2 = X_test
     Y_TESTS2 = Y_test
     
-    model1296 = LinearRegression()
-    model2401 = LinearRegression()
-    modelSobol1 = LinearRegression()
-    modelSobol2 = LinearRegression()
+    for thisDegree in degrees:
+      #print(f'.')
+      #print(f'\tPolynomial degree = {thisDegree}.\n')
+      model1296 = make_pipeline(PolynomialFeatures(degree=thisDegree), LinearRegression())
+      model2401 = make_pipeline(PolynomialFeatures(degree=thisDegree), LinearRegression())
+      modelSobol1 = make_pipeline(PolynomialFeatures(degree=thisDegree), LinearRegression())
+      modelSobol2 = make_pipeline(PolynomialFeatures(degree=thisDegree), LinearRegression())
     
-    model1296.fit(X_TRAIN1296, Y_TRAIN1296)
-    model2401.fit(X_TRAIN2401, Y_TRAIN2401)
-    modelSobol1.fit(X_TRAINS1, Y_TRAINS1)
-    modelSobol2.fit(X_TRAINS2, Y_TRAINS2)
+      model1296.fit(X_TRAIN1296, Y_TRAIN1296)
+      model2401.fit(X_TRAIN2401, Y_TRAIN2401)
+      modelSobol1.fit(X_TRAINS1, Y_TRAINS1)
+      modelSobol2.fit(X_TRAINS2, Y_TRAINS2)
     
-    pickle.dump(model1296, open(f'trained_modelGrid1296_{thisRatio}_{rndInt}.sav', 'wb'))
-    pickle.dump(model2401, open(f'trained_modelGrid2401_{thisRatio}_{rndInt}.sav', 'wb'))
-    pickle.dump(modelSobol1, open(f'trained_modelSobol1_{thisRatio}_{rndInt}.sav', 'wb'))
-    pickle.dump(modelSobol2, open(f'trained_modelSobol2_{thisRatio}_{rndInt}.sav', 'wb'))
+      pickle.dump(model1296, open(f'trained_modelGrid1296_{thisRatio}_{rndInt}_deg{thisDegree}.sav', 'wb'))
+      pickle.dump(model2401, open(f'trained_modelGrid2401_{thisRatio}_{rndInt}_deg{thisDegree}.sav', 'wb'))
+      pickle.dump(modelSobol1, open(f'trained_modelSobol1_{thisRatio}_{rndInt}_deg{thisDegree}.sav', 'wb'))
+      pickle.dump(modelSobol2, open(f'trained_modelSobol2_{thisRatio}_{rndInt}_deg{thisDegree}.sav', 'wb'))
     
-    Y_prediction1296 = model1296.predict(X_TEST1296)
-    Y_prediction2401 = model2401.predict(X_TEST2401)
-    Y_predictionSobol1 = modelSobol1.predict(X_TESTS1)
-    Y_predictionSobol2 = modelSobol2.predict(X_TESTS2)
+      Y_prediction1296 = model1296.predict(X_TEST1296)
+      Y_prediction2401 = model2401.predict(X_TEST2401)
+      Y_predictionSobol1 = modelSobol1.predict(X_TESTS1)
+      Y_predictionSobol2 = modelSobol2.predict(X_TESTS2)
     
-    rmse1296 = np.sqrt(mean_squared_error(Y_TEST1296, Y_prediction1296))
-    r21296 = r2_score(Y_TEST1296, Y_prediction1296)
-    rmse2401 = np.sqrt(mean_squared_error(Y_TEST2401, Y_prediction2401))
-    r22401 = r2_score(Y_TEST2401, Y_prediction2401)
-    rmseS1 = np.sqrt(mean_squared_error(Y_TESTS1, Y_predictionSobol1))
-    r2S1 = r2_score(Y_TESTS1, Y_predictionSobol1)
-    rmseS2 = np.sqrt(mean_squared_error(Y_TESTS2, Y_predictionSobol2))
-    r2S2 = r2_score(Y_TESTS2, Y_predictionSobol2)
+      rmse1296 = np.sqrt(mean_squared_error(Y_TEST1296, Y_prediction1296))
+      r21296 = r2_score(Y_TEST1296, Y_prediction1296)
+      rmse2401 = np.sqrt(mean_squared_error(Y_TEST2401, Y_prediction2401))
+      r22401 = r2_score(Y_TEST2401, Y_prediction2401)
+      rmseS1 = np.sqrt(mean_squared_error(Y_TESTS1, Y_predictionSobol1))
+      r2S1 = r2_score(Y_TESTS1, Y_predictionSobol1)
+      rmseS2 = np.sqrt(mean_squared_error(Y_TESTS2, Y_predictionSobol2))
+      r2S2 = r2_score(Y_TESTS2, Y_predictionSobol2)
     
-    dfEntry = pd.DataFrame({"ratio": [thisRatio],
-                            "rndint": [rndInt],
-                            "dataset": ["Grid1296"],
-                            "rmse": [rmse1296],
-                            "r2": [r21296]})
-    dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
-    dfEntry = pd.DataFrame({"ratio": [thisRatio],
-                            "rndint": [rndInt],
-                            "dataset": ["Grid2401"],
-                            "rmse": [rmse2401],
-                            "r2": [r22401]})
-    dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
-    dfEntry = pd.DataFrame({"ratio": [thisRatio],
-                            "rndint": [rndInt],
-                            "dataset": ["Sobol1"],
-                            "rmse": [rmseS1],
-                            "r2": [r2S1]})
-    dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
-    dfEntry = pd.DataFrame({"ratio": [thisRatio],
-                            "rndint": [rndInt],
-                            "dataset": ["Sobol2"],
-                            "rmse": [rmseS2],
-                            "r2": [r2S2]})
-    dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
-
-
+      dfEntry = pd.DataFrame({"ratio": [thisRatio],
+                              "rndint": [rndInt],
+                              "dataset": ["Grid1296"],
+                              "degree": [thisDegree],
+                              "rmse": [rmse1296],
+                              "r2": [r21296]})
+      dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
+      dfEntry = pd.DataFrame({"ratio": [thisRatio],
+                              "rndint": [rndInt],
+                              "dataset": ["Grid2401"],
+                              "degree": [thisDegree],
+                              "rmse": [rmse2401],
+                              "r2": [r22401]})
+      dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
+      dfEntry = pd.DataFrame({"ratio": [thisRatio],
+                              "rndint": [rndInt],
+                              "dataset": ["Sobol1"],
+                              "degree": [thisDegree],
+                              "rmse": [rmseS1],
+                              "r2": [r2S1]})
+      dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
+      dfEntry = pd.DataFrame({"ratio": [thisRatio],
+                              "rndint": [rndInt],
+                              "dataset": ["Sobol2"],
+                              "degree": [thisDegree],
+                              "rmse": [rmseS2],
+                              "r2": [r2S2]})
+      dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
+  print(f'\n')
   os.chdir(cwd)
 
 os.chdir(pwd)
