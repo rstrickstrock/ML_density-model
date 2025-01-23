@@ -271,7 +271,6 @@ if createCombinedDataFile:
       print(f'Could not get \'thisRMSE = datasetSubset["rmse"]\' for\nthisPredictionEntry = {thisPredictionEntry}\nthisStatisticsEntry = {datasetSubset}')
     else:
       print(f'{thisRMSE}')
-      exit()
       #print(f'{thisRMSE.to_numpy()}')
       #print(f'{float(thisRMSE.to_numpy())}')
       try:
