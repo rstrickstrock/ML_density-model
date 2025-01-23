@@ -1,5 +1,7 @@
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.pipeline import make_pipeline
 
 import pandas as pd
 import os
@@ -42,7 +44,7 @@ else:
   xOpt = optParams.drop('density', axis=1)
   #print(f'{xOpt}')
   yOpt = optParams['density']
-  #print(f'{yOpt}')
+  print(f'{yOpt}')
   try:
     yOpt = float(yOpt.to_numpy())
   except:
