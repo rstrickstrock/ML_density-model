@@ -263,7 +263,8 @@ if createCombinedDataFile:
     except:
       print(f'Could not get \'thisRMSE = datasetSubset["rmse"]\' for\nthisPredictionEntry = {thisPredictionEntry}\nthisStatisticsEntry = {datasetSubset}')
     else:
-      #print(f'{thisRMSE}')
+      print(f'{thisRMSE}')
+      exit()
       #print(f'{thisRMSE.to_numpy()}')
       #print(f'{float(thisRMSE.to_numpy())}')
       try:
@@ -283,7 +284,7 @@ if createCombinedDataFile:
       try:
         thisR2 = float(thisR2.to_numpy())
       except:
-        print(f'Could not cast \'thisRMSE = float(thisR2.to_numpy())\' for\nthisPredictionEntry = {thisPredictionEntry}\nthisStatisticsEntry = {datasetSubset}')
+        print(f'Could not cast \'thisR2 = float(thisR2.to_numpy())\' for\nthisPredictionEntry = {thisPredictionEntry}\nthisStatisticsEntry = {datasetSubset}')
       else:
         #print(f'{thisR2}')
         pass
