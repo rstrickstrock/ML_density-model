@@ -5,8 +5,8 @@ import numpy as np
 import os
 import glob
 
-metricX = "rmse"
-#metricX = "mape"
+#metricX = "rmse"
+metricX = "mape"
 metricY = "r2"
 #metricY = "mape"
 statisticsFile = 'Stats.csv'
@@ -85,7 +85,7 @@ print(f'stddev {yLabel}: {np.std(subsetSobol2[metricY].to_numpy())}\n')
 gs_kw = dict(width_ratios=[1, 1], height_ratios=[1, 1])
 fig, axd = plt.subplot_mosaic([['Grid1296', 'Sobol1'], 
                                ['Grid2401', 'Sobol2']], 
-                               gridspec_kw=gs_kw, figsize=(14.0, 14.0))
+                               gridspec_kw=gs_kw, figsize=(10.0, 10.0))
 
 axd2Grid1296 = axd["Grid1296"].twinx()
 axd2Grid2401 = axd["Grid2401"].twinx()
@@ -202,9 +202,9 @@ axd2Sobol2.spines['right'].set_color("#F97306")
 axd2Sobol2.tick_params(axis='y', color="#F97306", which='both')
 
 plt.tight_layout()
-plt.show()
+#plt.show()
 
-
+plt.savefig(f'Ratio-vs-{xLabel}_{yLabel}.png', dpi=300, format='png')
 
 
 
