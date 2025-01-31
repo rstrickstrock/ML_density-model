@@ -6,8 +6,8 @@ import glob
 
 
 statisticsFile = 'Stats.csv'
-#metrictype = "rmse"
-metrictype = "mape"
+metrictype = "rmse"
+#metrictype = "mape"
 
 if metrictype is "rmse":
   xLabel = "RMSE"
