@@ -1,6 +1,7 @@
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.metrics import mean_squared_error, r2_score, 
+from sklearn.metrics import mean_absolute_percentage_error as skmape
 
 import pandas as pd
 import numpy as np
@@ -68,6 +69,7 @@ dfStatistics = pd.DataFrame({"ratio": [],
                              "rndint": [],
                              "dataset": [],
                              "rmse": [],
+                             "mape": [],
                              "r2": []})
 
 for thisRatio in testSizes:
@@ -129,36 +131,47 @@ for thisRatio in testSizes:
     Y_predictionSobol2 = modelSobol2.predict(X_TESTS2)
     
     rmse1296 = np.sqrt(mean_squared_error(Y_TEST1296, Y_prediction1296))
+    mape1296 = skmape(Y_TEST1296, Y_prediction1296)
     r21296 = r2_score(Y_TEST1296, Y_prediction1296)
+    #
     rmse2401 = np.sqrt(mean_squared_error(Y_TEST2401, Y_prediction2401))
+    mape2401 = skmape(Y_TEST2401, Y_prediction2401)
     r22401 = r2_score(Y_TEST2401, Y_prediction2401)
+    #
     rmseS1 = np.sqrt(mean_squared_error(Y_TESTS1, Y_predictionSobol1))
+    mapeS1 = skmape(Y_TESTS1, Y_predictionS1)
     r2S1 = r2_score(Y_TESTS1, Y_predictionSobol1)
+    #
     rmseS2 = np.sqrt(mean_squared_error(Y_TESTS2, Y_predictionSobol2))
+    mapeS2 = skmape(Y_TESTS2, Y_predictionS2)
     r2S2 = r2_score(Y_TESTS2, Y_predictionSobol2)
     
     dfEntry = pd.DataFrame({"ratio": [thisRatio],
                             "rndint": [rndInt],
                             "dataset": ["Grid1296"],
                             "rmse": [rmse1296],
+                            "mape": [mape1296],
                             "r2": [r21296]})
     dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
     dfEntry = pd.DataFrame({"ratio": [thisRatio],
                             "rndint": [rndInt],
                             "dataset": ["Grid2401"],
                             "rmse": [rmse2401],
+                            "mape": [mape2401],
                             "r2": [r22401]})
     dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
     dfEntry = pd.DataFrame({"ratio": [thisRatio],
                             "rndint": [rndInt],
                             "dataset": ["Sobol1"],
                             "rmse": [rmseS1],
+                            "mape": [mapeS1],
                             "r2": [r2S1]})
     dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
     dfEntry = pd.DataFrame({"ratio": [thisRatio],
                             "rndint": [rndInt],
                             "dataset": ["Sobol2"],
                             "rmse": [rmseS2],
+                            "mape": [mapeS2],
                             "r2": [r2S2]})
     dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
 
