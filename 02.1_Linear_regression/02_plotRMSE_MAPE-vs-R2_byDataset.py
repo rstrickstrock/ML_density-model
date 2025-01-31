@@ -93,7 +93,7 @@ axd["Sobol2"].set_ylim([minR2, maxR2])
 plt.tight_layout()
 plt.show()
 
-plt.savefig(f'{xLabel}vsR2.png')
+plt.savefig(f'{xLabel}vsR2', format='png')
 
 
 
