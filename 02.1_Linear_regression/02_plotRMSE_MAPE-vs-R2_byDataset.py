@@ -50,7 +50,7 @@ subsetSobol2 = dfStatistics[dfStatistics["dataset"] == "Sobol2"]
 gs_kw = dict(width_ratios=[2, 1, 1], height_ratios=[1, 1])
 fig, axd = plt.subplot_mosaic([['AllInOne', 'Grid1296', 'Sobol1'], 
                                ['AllInOne', 'Grid2401', 'Sobol2']], 
-                               gridspec_kw=gs_kw, figsize=(28.0, 14.0))
+                               gridspec_kw=gs_kw, figsize=(18.0, 9.0))
 
 axd["AllInOne"].scatter(subsetGrid1296[f'{metrictype}'], subsetGrid1296["r2"], label="Grid1296", c="#332288", marker='o')#, edgecolor="#44AA99")
 axd["AllInOne"].scatter(subsetGrid2401[f'{metrictype}'], subsetGrid2401["r2"], label="Grid2401", c="#88CCEE", marker='o')#, edgecolor="#44AA99")
@@ -93,7 +93,7 @@ axd["Sobol2"].set_ylim([minR2, maxR2])
 plt.tight_layout()
 plt.show()
 
-
+plt.savefig(f'{xLabel}vsR2.png', dpi=300)
 
 
 
