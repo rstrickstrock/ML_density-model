@@ -18,9 +18,9 @@ statisticsFile = 'Stats.csv'
 
 cwd = os.getcwd()
 
-createPredictionsFile = True
+#createPredictionsFile = True //not used?!
 if os.path.isfile(predictionsFile):
-  createPredictionsFile = False
+  #createPredictionsFile = False //not used?!
   try:
     dfPredictions = pd.read_csv(predictionsFile)
   except:
@@ -173,6 +173,7 @@ if createCombinedDataFile:
                                  "rndint":[],
                                  "dataset":[],
                                  "rmse": [],
+                                 "mape": [],
                                  "r2": [],
                                  "prediction":[],
                                  "target":[],
@@ -240,7 +241,7 @@ if createCombinedDataFile:
       #print(f'{datasetSubset}')
       pass
     
-    ## get RMSE and R2 from dfStatistics entry  
+    ## get RMSE, MAPE and R2 from dfStatistics entry  
     try:
       thisRMSE = datasetSubset["rmse"]
     except:
@@ -258,6 +259,22 @@ if createCombinedDataFile:
         pass
       pass
     try:
+      thisMAPE = datasetSubset["mape"]
+    except:
+      print(f'Could not get \'thisMAPE = datasetSubset["mape"]\' for\nthisPredictionEntry = {thisPredictionEntry}\nthisStatisticsEntry = {datasetSubset}')
+    else:
+      #print(f'{thisMAPE}')
+      #print(f'{thisMAPE.to_numpy()}')
+      #print(f'{float(thisMAPE.to_numpy())}')
+      try:
+        thisMAPE = float(thisMAPE.to_numpy())
+      except:
+        print(f'Could not cast \'thisMAPE = float(thisMAPE.to_numpy())\' for\nthisPredictionEntry = {thisPredictionEntry}\nthisStatisticsEntry = {datasetSubset}')
+      else:
+        #print(f'{thisMAPE}')
+        pass
+      pass
+    try:
       thisR2 = datasetSubset["r2"]
     except:
       print(f'Could not get \'thisR2 = datasetSubset["r2"]\' for\nthisPredictionEntry = {thisPredictionEntry}\nthisStatisticsEntry = {datasetSubset}')
@@ -266,7 +283,7 @@ if createCombinedDataFile:
       try:
         thisR2 = float(thisR2.to_numpy())
       except:
-        print(f'Could not cast \'thisRMSE = float(thisR2.to_numpy())\' for\nthisPredictionEntry = {thisPredictionEntry}\nthisStatisticsEntry = {datasetSubset}')
+        print(f'Could not cast \'thisR2 = float(thisR2.to_numpy())\' for\nthisPredictionEntry = {thisPredictionEntry}\nthisStatisticsEntry = {datasetSubset}')
       else:
         #print(f'{thisR2}')
         pass
@@ -278,6 +295,7 @@ if createCombinedDataFile:
                                             "rndint":[thisRndInt],
                                             "dataset":[thisDataset],
                                             "rmse": [thisRMSE],
+                                            "mape": [thisMAPE],
                                             "r2": [thisR2],
                                             "prediction":[thisPrediction],
                                             "target":[707.0],
@@ -310,7 +328,15 @@ idxMinRMSE = dfCombinedData['rmse'].idxmin()
 minRMSE = dfCombinedData['rmse'].min()
 #print(f'{minRMSE}')
 minRMSERow = dfCombinedData.iloc[idxMinRMSE]
-#print(f'Min RMSE Entry:\n{minRMSERow}\n')
+print(f'Min RMSE Entry:\n{minRMSERow}\n')
+
+## min MAPE
+idxMinMAPE = dfCombinedData['mape'].idxmin()
+#print(f'{idxMinMAPE}')
+minMAPE = dfCombinedData['mape'].min()
+#print(f'{minMAPE}')
+minMAPERow = dfCombinedData.iloc[idxMinMAPE]
+print(f'Min RMSE Entry:\n{minMAPERow}\n')
 
 ## max R2
 idxMaxR2 = dfCombinedData['r2'].idxmax()
@@ -318,7 +344,7 @@ idxMaxR2 = dfCombinedData['r2'].idxmax()
 maxR2 = dfCombinedData['r2'].max()
 #print(f'{maxR2}')
 maxR2Row = dfCombinedData.iloc[idxMaxR2]
-#print(f'Max R2 Entry:\n{maxR2Row}\n')
+print(f'Max R2 Entry:\n{maxR2Row}\n')
 
 ## diff closest to 0
 thisDiff_old = 100000000
@@ -337,9 +363,10 @@ subsetSobol1 = dfCombinedData[dfCombinedData["dataset"] == "Sobol1"]
 subsetSobol2 = dfCombinedData[dfCombinedData["dataset"] == "Sobol2"]
 
 ## plots
-gs_kw = dict(width_ratios=[1, 1, 1], height_ratios=[1])
-fig, axd = plt.subplot_mosaic([['RMSEvsR2', 'RMSEvsDiff', 'R2vsDiff']], 
-                               gridspec_kw=gs_kw, figsize=(21.0, 7.0))
+gs_kw = dict(width_ratios=[1, 1], height_ratios=[1, 1])
+fig, axd = plt.subplot_mosaic([['RMSEvsR2', 'R2vsDiff'],
+                               ['RMSEvsDiff', 'MAPEvsDiff']], 
+                               gridspec_kw=gs_kw, figsize=(9.0, 9.0))
 
 axd["RMSEvsR2"].scatter(subsetGrid1296["rmse"], subsetGrid1296["r2"], label="Dataset: Grid1296", c="#332288")
 axd["RMSEvsR2"].scatter(subsetGrid2401["rmse"], subsetGrid2401["r2"], label="Dataset: Grid2401", c="#88CCEE")
@@ -356,6 +383,14 @@ axd["RMSEvsDiff"].scatter(subsetSobol2["rmse"], subsetSobol2["diff"], label="Dat
 axd["RMSEvsDiff"].set(xlabel="RMSE", ylabel="Diff")
 axd["RMSEvsDiff"].set_title("RMSE vs Diff (target - pred(opt_params))", fontweight='bold')
 axd["RMSEvsDiff"].legend()
+
+axd["MAPEvsDiff"].scatter(subsetGrid1296["mape"], subsetGrid1296["diff"], label="Dataset: Grid1296", c="#332288")
+axd["MAPEvsDiff"].scatter(subsetGrid2401["mape"], subsetGrid2401["diff"], label="Dataset: Grid2401", c="#88CCEE")
+axd["MAPEvsDiff"].scatter(subsetSobol1["mape"], subsetSobol1["diff"], label="Dataset: Sobol1", c="#DDCC77")
+axd["MAPEvsDiff"].scatter(subsetSobol2["mape"], subsetSobol2["diff"], label="Dataset: Sobol2", c="#117733")
+axd["MAPEvsDiff"].set(xlabel="MAPE", ylabel="Diff")
+axd["MAPEvsDiff"].set_title("MAPE vs Diff (target - pred(opt_params))", fontweight='bold')
+axd["MAPEvsDiff"].legend()
 
 axd["R2vsDiff"].scatter(subsetGrid1296["r2"], subsetGrid1296["diff"], label="Dataset: Grid1296", c="#332288")
 axd["R2vsDiff"].scatter(subsetGrid2401["r2"], subsetGrid2401["diff"], label="Dataset: Grid2401", c="#88CCEE")
