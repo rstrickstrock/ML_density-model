@@ -8,6 +8,7 @@ import glob
 metricX = "rmse"
 #metricX = "mape"
 metricY = "r2"
+#metricY = "mape"
 statisticsFile = 'Stats.csv'
 
 if not metricX in ["rmse", "mape", "r2"]:
