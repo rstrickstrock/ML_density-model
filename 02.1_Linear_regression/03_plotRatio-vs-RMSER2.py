@@ -5,29 +5,29 @@ import numpy as np
 import os
 import glob
 
-#metricX = "rmse"
-metricX = "mape"
-metricY = "r2"
-#metricY = "mape"
+#metricY1 = "rmse"
+metricY1 = "mape"
+metricY2 = "r2"
+#metricY2 = "mape"
 statisticsFile = 'Stats.csv'
 
-if not metricX in ["rmse", "mape", "r2"]:
-  print(f'Chosen metric 1 ({metricX}) is not in [rmse, mape, r2]. Please chose one of them. Exit.')
+if not metricY1 in ["rmse", "mape", "r2"]:
+  print(f'Chosen metric 1 ({metricY1}) is not in [rmse, mape, r2]. Please chose one of them. Exit.')
   exit()
-if not metricY in ["rmse", "mape", "r2"]:
-  print(f'Chosen metric 2 ({metricY}) is not in [rmse, mape, r2]. Please chose one of them. Exit.')
+if not metricY2 in ["rmse", "mape", "r2"]:
+  print(f'Chosen metric 2 ({metricY2}) is not in [rmse, mape, r2]. Please chose one of them. Exit.')
   exit()
   
-if metricX is "rmse":
+if metricY1 is "rmse":
   xLabel = "RMSE"
-elif metricX is "mape":
+elif metricY1 is "mape":
   xLabel = "MAPE"
 else:
   xLabel = "R2"
 
-if metricY is "rmse":
+if metricY2 is "rmse":
   yLabel = "RMSE"
-elif metricY is "mape":
+elif metricY2 is "mape":
   yLabel = "MAPE"
 else:
   yLabel = "R2"
@@ -47,39 +47,39 @@ else:
     pass
 
 
-minMetric1 = dfStatistics[f'{metricX}'].min()
+minMetric1 = dfStatistics[f'{metricY1}'].min()
 minMetric1 = minMetric1 - 0.01*minMetric1
-maxMetric1 = dfStatistics[f'{metricX}'].max()
+maxMetric1 = dfStatistics[f'{metricY1}'].max()
 maxMetric1 = maxMetric1 + 0.01*maxMetric1
-minMetric2 = dfStatistics['r2'].min()
+minMetric2 = dfStatistics[f'{metricY2}'].min()
 minMetric2 = minMetric2 - 0.001*minMetric2
-maxMetric2 = dfStatistics['r2'].max()
+maxMetric2 = dfStatistics[f'{metricY2}'].max()
 maxMetric2 = maxMetric2 + 0.01*maxMetric2
 
 subsetGrid1296 = dfStatistics[dfStatistics["dataset"] == "Grid1296"]
 print(f'Grid1296')
-print(f'mean {xLabel}: {np.mean(subsetGrid1296[metricX].to_numpy())}')
-print(f'stddev {xLabel}: {np.std(subsetGrid1296[metricX].to_numpy())}')
-print(f'mean {yLabel}: {np.mean(subsetGrid1296[metricY].to_numpy())}')
-print(f'stddev {yLabel}: {np.std(subsetGrid1296[metricY].to_numpy())}\n')
+print(f'mean {xLabel}: {np.mean(subsetGrid1296[metricY1].to_numpy())}')
+print(f'stddev {xLabel}: {np.std(subsetGrid1296[metricY1].to_numpy())}')
+print(f'mean {yLabel}: {np.mean(subsetGrid1296[metricY2].to_numpy())}')
+print(f'stddev {yLabel}: {np.std(subsetGrid1296[metricY2].to_numpy())}\n')
 subsetGrid2401 = dfStatistics[dfStatistics["dataset"] == "Grid2401"]
 print(f'Grid2401')
-print(f'mean {xLabel}: {np.mean(subsetGrid2401[metricX].to_numpy())}')
-print(f'stddev {xLabel}: {np.std(subsetGrid2401[metricX].to_numpy())}')
-print(f'mean {yLabel}: {np.mean(subsetGrid2401[metricY].to_numpy())}')
-print(f'stddev {yLabel}: {np.std(subsetGrid2401[metricY].to_numpy())}\n')
+print(f'mean {xLabel}: {np.mean(subsetGrid2401[metricY1].to_numpy())}')
+print(f'stddev {xLabel}: {np.std(subsetGrid2401[metricY1].to_numpy())}')
+print(f'mean {yLabel}: {np.mean(subsetGrid2401[metricY2].to_numpy())}')
+print(f'stddev {yLabel}: {np.std(subsetGrid2401[metricY2].to_numpy())}\n')
 subsetSobol1 = dfStatistics[dfStatistics["dataset"] == "Sobol1"]
 print(f'Sobol1')
-print(f'mean {xLabel}: {np.mean(subsetSobol1[metricX].to_numpy())}')
-print(f'stddev {xLabel}: {np.std(subsetSobol1[metricX].to_numpy())}')
-print(f'mean {yLabel}: {np.mean(subsetSobol1[metricY].to_numpy())}')
-print(f'stddev {yLabel}: {np.std(subsetSobol1[metricY].to_numpy())}\n')
+print(f'mean {xLabel}: {np.mean(subsetSobol1[metricY1].to_numpy())}')
+print(f'stddev {xLabel}: {np.std(subsetSobol1[metricY1].to_numpy())}')
+print(f'mean {yLabel}: {np.mean(subsetSobol1[metricY2].to_numpy())}')
+print(f'stddev {yLabel}: {np.std(subsetSobol1[metricY2].to_numpy())}\n')
 subsetSobol2 = dfStatistics[dfStatistics["dataset"] == "Sobol2"]
 print(f'Sobol2')
-print(f'mean {xLabel}: {np.mean(subsetSobol2[metricX].to_numpy())}')
-print(f'stddev {xLabel}: {np.std(subsetSobol2[metricX].to_numpy())}')
-print(f'mean {yLabel}: {np.mean(subsetSobol2[metricY].to_numpy())}')
-print(f'stddev {yLabel}: {np.std(subsetSobol2[metricY].to_numpy())}\n')
+print(f'mean {xLabel}: {np.mean(subsetSobol2[metricY1].to_numpy())}')
+print(f'stddev {xLabel}: {np.std(subsetSobol2[metricY1].to_numpy())}')
+print(f'mean {yLabel}: {np.mean(subsetSobol2[metricY2].to_numpy())}')
+print(f'stddev {yLabel}: {np.std(subsetSobol2[metricY2].to_numpy())}\n')
 
 ## plots
 gs_kw = dict(width_ratios=[1, 1], height_ratios=[1, 1])
@@ -95,10 +95,10 @@ axd2Sobol2 = axd["Sobol2"].twinx()
 labeled = False
 for ratio in subsetGrid1296["ratio"].unique():
   thisSubset = subsetGrid1296[subsetGrid1296["ratio"] == ratio]
-  thisAvgRMSE = np.mean(thisSubset[f'{metricX}'].to_numpy())
-  thisStdRMSE = np.std(thisSubset[f'{metricX}'].to_numpy())
-  thisAvgR2 = np.mean(thisSubset[f'{metricY}'].to_numpy())
-  thisStdR2 = np.std(thisSubset[f'{metricY}'].to_numpy())
+  thisAvgRMSE = np.mean(thisSubset[f'{metricY1}'].to_numpy())
+  thisStdRMSE = np.std(thisSubset[f'{metricY1}'].to_numpy())
+  thisAvgR2 = np.mean(thisSubset[f'{metricY2}'].to_numpy())
+  thisStdR2 = np.std(thisSubset[f'{metricY2}'].to_numpy())
   if not labeled:
     axd["Grid1296"].errorbar(1-ratio, thisAvgRMSE, yerr=thisStdRMSE, label=f'{xLabel}', c="#069AF3", marker='o')
     axd2Grid1296.errorbar(1-ratio, thisAvgR2, yerr=thisStdR2, label=f'{yLabel}', c="#F97306", marker='o')
@@ -107,10 +107,10 @@ for ratio in subsetGrid1296["ratio"].unique():
     axd2Grid1296.errorbar(1-ratio, thisAvgR2, yerr=thisStdR2, c="#F97306", marker='o')
     
   thisSubset = subsetGrid2401[subsetGrid2401["ratio"] == ratio]
-  thisAvgRMSE = np.mean(thisSubset[f'{metricX}'].to_numpy())
-  thisStdRMSE = np.std(thisSubset[f'{metricX}'].to_numpy())
-  thisAvgR2 = np.mean(thisSubset[f'{metricY}'].to_numpy())
-  thisStdR2 = np.std(thisSubset[f'{metricY}'].to_numpy())
+  thisAvgRMSE = np.mean(thisSubset[f'{metricY1}'].to_numpy())
+  thisStdRMSE = np.std(thisSubset[f'{metricY1}'].to_numpy())
+  thisAvgR2 = np.mean(thisSubset[f'{metricY2}'].to_numpy())
+  thisStdR2 = np.std(thisSubset[f'{metricY2}'].to_numpy())
   if not labeled:
     axd["Grid2401"].errorbar(1-ratio, thisAvgRMSE, yerr=thisStdRMSE, label=f'{xLabel}', c="#069AF3", marker='o')
     axd2Grid2401.errorbar(1-ratio, thisAvgR2, yerr=thisStdR2, label=f'{yLabel}', c="#F97306", marker='o')
@@ -119,10 +119,10 @@ for ratio in subsetGrid1296["ratio"].unique():
     axd2Grid2401.errorbar(1-ratio, thisAvgR2, yerr=thisStdR2, c="#F97306", marker='o')
     
   thisSubset = subsetSobol1[subsetSobol1["ratio"] == ratio]
-  thisAvgRMSE = np.mean(thisSubset[f'{metricX}'].to_numpy())
-  thisStdRMSE = np.std(thisSubset[f'{metricX}'].to_numpy())
-  thisAvgR2 = np.mean(thisSubset[f'{metricY}'].to_numpy())
-  thisStdR2 = np.std(thisSubset[f'{metricY}'].to_numpy())
+  thisAvgRMSE = np.mean(thisSubset[f'{metricY1}'].to_numpy())
+  thisStdRMSE = np.std(thisSubset[f'{metricY1}'].to_numpy())
+  thisAvgR2 = np.mean(thisSubset[f'{metricY2}'].to_numpy())
+  thisStdR2 = np.std(thisSubset[f'{metricY2}'].to_numpy())
   if not labeled:
     axd["Sobol1"].errorbar(1-ratio, thisAvgRMSE, yerr=thisStdRMSE, label=f'{xLabel}', c="#069AF3", marker='o')
     axd2Sobol1.errorbar(1-ratio, thisAvgR2, yerr=thisStdR2, label=f'{yLabel}', c="#F97306", marker='o')
@@ -131,10 +131,10 @@ for ratio in subsetGrid1296["ratio"].unique():
     axd2Sobol1.errorbar(1-ratio, thisAvgR2, yerr=thisStdR2, c="#F97306", marker='o')
     
   thisSubset = subsetSobol2[subsetSobol2["ratio"] == ratio]
-  thisAvgRMSE = np.mean(thisSubset[f'{metricX}'].to_numpy())
-  thisStdRMSE = np.std(thisSubset[f'{metricX}'].to_numpy())
-  thisAvgR2 = np.mean(thisSubset[f'{metricY}'].to_numpy())
-  thisStdR2 = np.std(thisSubset[f'{metricY}'].to_numpy())
+  thisAvgRMSE = np.mean(thisSubset[f'{metricY1}'].to_numpy())
+  thisStdRMSE = np.std(thisSubset[f'{metricY1}'].to_numpy())
+  thisAvgR2 = np.mean(thisSubset[f'{metricY2}'].to_numpy())
+  thisStdR2 = np.std(thisSubset[f'{metricY2}'].to_numpy())
   if not labeled:
     axd["Sobol2"].errorbar(1-ratio, thisAvgRMSE, yerr=thisStdRMSE, label=f'{xLabel}', c="#069AF3", marker='o')
     axd2Sobol2.errorbar(1-ratio, thisAvgR2, yerr=thisStdR2, label=f'{yLabel}', c="#F97306", marker='o')
