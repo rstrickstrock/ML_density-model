@@ -418,7 +418,9 @@ axd["R2vsDiff"].set_title("R2 vs Diff (target - pred(opt_params))", fontweight='
 axd["R2vsDiff"].legend()
 
 plt.tight_layout()
-plt.show()
+#plt.show()
+
+plt.savefig(f'RMSE_MAPE_R2-vs-Diff.png', dpi=300, format='png')
 
 
 
