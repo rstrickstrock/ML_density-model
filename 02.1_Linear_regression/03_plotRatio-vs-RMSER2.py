@@ -5,7 +5,7 @@ import numpy as np
 import os
 import glob
 
-#metricY1 = "rmse"
+metricY1 = "rmse"
 metricY1 = "mape"
 metricY2 = "r2"
 #metricY2 = "mape"
