@@ -8,7 +8,7 @@ import glob
 statisticsFile = 'Stats.csv'
 metric1 = "rmse"
 #metric1 = "mape"
-#metric2 = "r2"
+metric2 = "r2"
 metric2 = "mape"
 
 if metric1 is "rmse":
@@ -55,6 +55,9 @@ minMETRIC2 = minMETRIC2 - 0.01*minMETRIC2
 maxMETRIC2 = dfStatistics[f'{metric2}'].max()
 maxMETRIC2 = maxMETRIC2 + 0.01*maxMETRIC2
 
+maxMETRIC1 = 100
+maxMETRIC2 = 100
+#minMETRIC2 = 0
 
 subsetGrid1296 = dfStatistics[dfStatistics["dataset"] == "Grid1296"]
 subsetGrid2401 = dfStatistics[dfStatistics["dataset"] == "Grid2401"]
