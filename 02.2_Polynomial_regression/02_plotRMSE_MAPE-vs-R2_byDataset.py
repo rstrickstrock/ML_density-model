@@ -13,20 +13,36 @@ metric2 = "mape"
 
 if metric1 is "rmse":
   xLabel = "RMSE"
+  minMETRIC1 = dfStatistics[f'{metric1}'].min()
+  minMETRIC1 = minMETRIC1 - 0.01*minMETRIC1
+  maxMETRIC1 = 100
 elif metric1 is "mape":
   xLabel = "MAPE"
+  minMETRIC1 = dfStatistics[f'{metric1}'].min()
+  minMETRIC1 = minMETRIC1 - 0.01*minMETRIC1
+  maxMETRIC1 = 0.13 
 elif metric1 is "r2":
   xLabel = "R2"
+  maxMETRIC1 = 1.05
+  minMETRIC1 = 0.0
 else:
   print(f'Please set \'metric1\' to "rmse", "r2" or "mape". (Is: {metric1}). Exit.')
   exit()
   
 if metric2 is "rmse":
   yLabel = "RMSE"
+  minMETRIC2 = dfStatistics[f'{metric2}'].min()
+  minMETRIC2 = minMETRIC2 - 0.01*minMETRIC2
+  maxMETRIC2 = 100
 elif metric2 is "mape":
   yLabel = "MAPE"
+  minMETRIC2 = dfStatistics[f'{metric2}'].min()
+  minMETRIC2 = minMETRIC2 - 0.01*minMETRIC2
+  maxMETRIC2 = 0.13
 elif metric2 is "r2":
   yLabel = "R2"
+  maxMETRIC2 = 1.05
+  minMETRIC2 = 0.0
 else:
   print(f'Please set \'metric2\' to "rmse", "r2" or "mape". (Is: {metric2}). Exit.')
   exit()
@@ -45,19 +61,6 @@ else:
     #print(f'{dfStatistics}')
     pass
 
-#print(f'{dfStatistics}')
-minMETRIC1 = dfStatistics[f'{metric1}'].min()
-minMETRIC1 = minMETRIC1 - 0.01*minMETRIC1
-maxMETRIC1 = dfStatistics[f'{metric1}'].max()
-maxMETRIC1 = maxMETRIC1 + 0.01*maxMETRIC1
-minMETRIC2 = dfStatistics[f'{metric2}'].min()
-minMETRIC2 = minMETRIC2 - 0.01*minMETRIC2
-maxMETRIC2 = dfStatistics[f'{metric2}'].max()
-maxMETRIC2 = maxMETRIC2 + 0.01*maxMETRIC2
-
-maxMETRIC1 = 100
-maxMETRIC2 = 100
-#minMETRIC2 = 0
 
 subsetGrid1296 = dfStatistics[dfStatistics["dataset"] == "Grid1296"]
 subsetGrid2401 = dfStatistics[dfStatistics["dataset"] == "Grid2401"]
