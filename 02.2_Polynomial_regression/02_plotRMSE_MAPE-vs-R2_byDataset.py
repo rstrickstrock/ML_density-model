@@ -7,9 +7,24 @@ import glob
 
 statisticsFile = 'Stats.csv'
 metric1 = "rmse"
-#metric1 = "mape"
+metric1 = "mape"
 metric2 = "r2"
-metric2 = "mape"
+#metric2 = "mape"
+
+if not os.path.isfile(statisticsFile):
+  print(f'Can not find and open \'{statisticsFile}\'. Exit.')
+  exit()
+else:
+  dfStatistics = pd.read_csv(statisticsFile)
+  #print(f'{dfStatistics}')
+  try:
+    dfStatistics = dfStatistics.drop(columns=["Unnamed: 0"])
+  except:
+    print(f'Something went wrong with\'dfStatistics = dfStatistics.drop(columns=["Unnamed: 0"])\'.')
+  else:
+    #print(f'{dfStatistics}')
+    pass
+    
 
 if metric1 is "rmse":
   xLabel = "RMSE"
@@ -46,20 +61,6 @@ elif metric2 is "r2":
 else:
   print(f'Please set \'metric2\' to "rmse", "r2" or "mape". (Is: {metric2}). Exit.')
   exit()
-  
-if not os.path.isfile(statisticsFile):
-  print(f'Can not find and open \'{statisticsFile}\'. Exit.')
-  exit()
-else:
-  dfStatistics = pd.read_csv(statisticsFile)
-  #print(f'{dfStatistics}')
-  try:
-    dfStatistics = dfStatistics.drop(columns=["Unnamed: 0"])
-  except:
-    print(f'Something went wrong with\'dfStatistics = dfStatistics.drop(columns=["Unnamed: 0"])\'.')
-  else:
-    #print(f'{dfStatistics}')
-    pass
 
 
 subsetGrid1296 = dfStatistics[dfStatistics["dataset"] == "Grid1296"]
