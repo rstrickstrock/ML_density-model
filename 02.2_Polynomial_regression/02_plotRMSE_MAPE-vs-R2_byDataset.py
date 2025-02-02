@@ -6,8 +6,8 @@ import glob
 
 
 statisticsFile = 'Stats.csv'
-#metric1 = "rmse"
-metric1 = "mape"
+metric1 = "rmse"
+#metric1 = "mape"
 #metric2 = "r2"
 metric2 = "mape"
 
