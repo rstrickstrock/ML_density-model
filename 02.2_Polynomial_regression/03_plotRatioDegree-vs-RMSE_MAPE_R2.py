@@ -10,7 +10,7 @@ statisticsFile = 'Stats.csv'
 metric1 = "rmse"
 #metric1 = "mape"
 metric2 = "r2"
-#metric2 = "mape"
+metric2 = "mape"
 
 if not os.path.isfile(statisticsFile):
   print(f'Can not find and open \'{statisticsFile}\'. Exit.')
