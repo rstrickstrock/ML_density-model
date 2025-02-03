@@ -10,7 +10,7 @@ statisticsFile = 'Stats.csv'
 metric1 = "rmse"
 #metric1 = "mape"
 metric2 = "r2"
-#metric2 = "mape"
+metric2 = "mape"
 
 if not os.path.isfile(statisticsFile):
   print(f'Can not find and open \'{statisticsFile}\'. Exit.')
@@ -177,12 +177,12 @@ for deg in range(0, len(degs)):
   axd["METRIC1"].set_ylabel(f'{xLabel}', fontweight='bold')
   axd["METRIC1"].set_xlabel("% of Dataset used for Training", fontweight='bold')
   axd["METRIC1"].set_title(f'Avg. {xLabel} per Training-/Testdata split', fontweight='bold')
-  #axd["METRIC1"].set_ylim([minRMSE, maxRMSE])
+  axd["METRIC1"].set_ylim([minMETRIC1, maxMETRIC1])
   axd["METRIC2"].legend()
   axd["METRIC2"].set_xlabel("% of Dataset used for Training", fontweight='bold')
   axd["METRIC2"].set_ylabel(f'{yLabel}', fontweight='bold')
   axd["METRIC2"].set_title(f'Avg. {yLabel} per Training-/Testdata split', fontweight='bold')
-  axd["METRIC2"].set_ylim([-1.0, 1.0])
+  axd["METRIC2"].set_ylim([([minMETRIC2, maxMETRIC2])
   
   axd['AvgByDegree'].errorbar(DegreesForPlotting, AvgRMSE, yerr=AvgRMSEerr, label=f'Average RMSEs', marker='o', color='#069AF3', ls='-.')
   axd['AvgByDegree'].legend(bbox_to_anchor=(0.22,0.05), loc='center')
