@@ -7,6 +7,10 @@ import glob
 
 
 statisticsFile = 'Stats.csv'
+metric1 = "rmse"
+#metric1 = "mape"
+metric2 = "r2"
+#metric2 = "mape"
 
 if not os.path.isfile(statisticsFile):
   print(f'Can not find and open \'{statisticsFile}\'. Exit.')
@@ -23,14 +27,41 @@ else:
     pass
 
 
-minRMSE = dfStatistics['rmse'].min()
-minRMSE = minRMSE - 0.01*minRMSE
-maxRMSE = dfStatistics['rmse'].max()
-maxRMSE = maxRMSE + 0.01*maxRMSE
-minR2 = dfStatistics['r2'].min()
-minR2 = minR2 - 0.001*minR2
-maxR2 = dfStatistics['r2'].max()
-maxR2 = maxR2 + 0.01*maxR2
+if metric1 is "rmse":
+  xLabel = "RMSE"
+  minMETRIC1 = dfStatistics[f'{metric1}'].min()
+  minMETRIC1 = minMETRIC1 - 0.01*minMETRIC1
+  maxMETRIC1 = 100
+elif metric1 is "mape":
+  xLabel = "MAPE"
+  minMETRIC1 = dfStatistics[f'{metric1}'].min()
+  minMETRIC1 = minMETRIC1 - 0.01*minMETRIC1
+  maxMETRIC1 = 0.13 
+elif metric1 is "r2":
+  xLabel = "R2"
+  maxMETRIC1 = 1.05
+  minMETRIC1 = 0.0
+else:
+  print(f'Please set \'metric1\' to "rmse", "r2" or "mape". (Is: {metric1}). Exit.')
+  exit()
+  
+if metric2 is "rmse":
+  yLabel = "RMSE"
+  minMETRIC2 = dfStatistics[f'{metric2}'].min()
+  minMETRIC2 = minMETRIC2 - 0.01*minMETRIC2
+  maxMETRIC2 = 100
+elif metric2 is "mape":
+  yLabel = "MAPE"
+  minMETRIC2 = dfStatistics[f'{metric2}'].min()
+  minMETRIC2 = minMETRIC2 - 0.01*minMETRIC2
+  maxMETRIC2 = 0.13
+elif metric2 is "r2":
+  yLabel = "R2"
+  maxMETRIC2 = 1.05
+  minMETRIC2 = 0.0
+else:
+  print(f'Please set \'metric2\' to "rmse", "r2" or "mape". (Is: {metric2}). Exit.')
+  exit()
 
 subsetGrid1296 = dfStatistics[dfStatistics["dataset"] == "Grid1296"]
 #print(f'Grid1296')
@@ -111,7 +142,7 @@ for deg in range(0, len(degs)):
   #print(f'deg: {deg}')
   thisDataSubset = datasetSubsets[deg]
   gs_kw = dict(width_ratios=[1, 1, 1], height_ratios=[1])
-  fig, axd = plt.subplot_mosaic([['RMSE', 'R2', 'AvgByDegree']],  
+  fig, axd = plt.subplot_mosaic([['METRIC1', 'METRIC2', 'AvgByDegree']],  
                                  gridspec_kw=gs_kw, figsize=(15.0, 5.0))
 
   DegreesForPlotting = []
@@ -123,10 +154,10 @@ for deg in range(0, len(degs)):
     thisSubsetDegree = thisDataSubset[thisDataSubset["degree"] == d]
     #print(f'{thisSubsetDegree}')
     DegreesForPlotting.append(d)
-    AvgRMSE.append(np.mean(thisSubsetDegree["rmse"].to_numpy()))
-    AvgRMSEerr.append(np.std(thisSubsetDegree["rmse"].to_numpy()))
-    AvgR2.append(np.mean(thisSubsetDegree["r2"].to_numpy()))
-    AvgR2err.append(np.std(thisSubsetDegree["r2"].to_numpy()))
+    AvgRMSE.append(np.mean(thisSubsetDegree[f'{metric1}'].to_numpy()))
+    AvgRMSEerr.append(np.std(thisSubsetDegree[f'{metric1}'].to_numpy()))
+    AvgR2.append(np.mean(thisSubsetDegree[f'{metric2}'].to_numpy()))
+    AvgR2err.append(np.std(thisSubsetDegree[f'{metric2}'].to_numpy()))
     thisX = []
     thisRMSE = []
     thisRMSEerr = []
@@ -135,36 +166,36 @@ for deg in range(0, len(degs)):
     for ratio in thisSubsetDegree["ratio"].unique():
       thisX.append(1-ratio)
       thisSubsetDegreeRatio = thisSubsetDegree[thisSubsetDegree["ratio"] == ratio]
-      thisRMSE.append(np.mean(thisSubsetDegreeRatio["rmse"].to_numpy()))
-      thisRMSEerr.append(np.std(thisSubsetDegreeRatio["rmse"].to_numpy()))
-      thisR2.append(np.mean(thisSubsetDegreeRatio["r2"].to_numpy()))
-      thisR2err.append(np.std(thisSubsetDegreeRatio["r2"].to_numpy()))
-    axd['RMSE'].errorbar(thisX, thisRMSE, yerr=thisRMSEerr, label=f'polyn. degree = {d}', marker=markers[d-1], color=colors[d-1], ls='-.')
-    axd['R2'].errorbar(thisX, thisR2, yerr=thisR2err, label=f'polyn. degree = {d}', marker=markers[d-1], color=colors[d-1], ls='-.')
+      thisRMSE.append(np.mean(thisSubsetDegreeRatio[f'{metric1}'].to_numpy()))
+      thisRMSEerr.append(np.std(thisSubsetDegreeRatio[f'{metric1}'].to_numpy()))
+      thisR2.append(np.mean(thisSubsetDegreeRatio[f'{metric2}'].to_numpy()))
+      thisR2err.append(np.std(thisSubsetDegreeRatio[f'{metric2}'].to_numpy()))
+    axd['METRIC1'].errorbar(thisX, thisRMSE, yerr=thisRMSEerr, label=f'polyn. degree = {d}', marker=markers[d-1], color=colors[d-1], ls='-.')
+    axd['METRIC2'].errorbar(thisX, thisR2, yerr=thisR2err, label=f'polyn. degree = {d}', marker=markers[d-1], color=colors[d-1], ls='-.')
     
-  axd["RMSE"].legend()
-  axd["RMSE"].set_ylabel("RMSE", fontweight='bold')
-  axd["RMSE"].set_xlabel("% of Dataset used for Training", fontweight='bold')
-  axd["RMSE"].set_title("Avg. RMSE per Training-/Testdata split", fontweight='bold')
-  #axd["RMSE"].set_ylim([minRMSE, maxRMSE])
-  axd["R2"].legend()
-  axd["R2"].set_xlabel("% of Dataset used for Training", fontweight='bold')
-  axd["R2"].set_ylabel("R2", fontweight='bold')
-  axd["R2"].set_title("Avg. R2 per Training-/Testdata split", fontweight='bold')
-  axd["R2"].set_ylim([-1.0, 1.0])
+  axd["METRIC1"].legend()
+  axd["METRIC1"].set_ylabel(f'{xLabel}', fontweight='bold')
+  axd["METRIC1"].set_xlabel("% of Dataset used for Training", fontweight='bold')
+  axd["METRIC1"].set_title(f'Avg. {xLabel} per Training-/Testdata split', fontweight='bold')
+  #axd["METRIC1"].set_ylim([minRMSE, maxRMSE])
+  axd["METRIC2"].legend()
+  axd["METRIC2"].set_xlabel("% of Dataset used for Training", fontweight='bold')
+  axd["METRIC2"].set_ylabel(f'{yLabel}', fontweight='bold')
+  axd["METRIC2"].set_title(f'Avg. {yLabel} per Training-/Testdata split', fontweight='bold')
+  axd["METRIC2"].set_ylim([-1.0, 1.0])
   
   axd['AvgByDegree'].errorbar(DegreesForPlotting, AvgRMSE, yerr=AvgRMSEerr, label=f'Average RMSEs', marker='o', color='#069AF3', ls='-.')
   axd['AvgByDegree'].legend(bbox_to_anchor=(0.22,0.05), loc='center')
-  axd["AvgByDegree"].set_ylabel("RMSE", c="#069AF3", fontweight='bold')
+  axd["AvgByDegree"].set_ylabel(f'{xLabel}', c="#069AF3", fontweight='bold')
   axd["AvgByDegree"].set_xlabel("Polynomial Degree", fontweight='bold')
-  axd["AvgByDegree"].set_title("Avg. RMSE/R2 per degree", fontweight='bold')
+  axd["AvgByDegree"].set_title(f'Avg. {xLabel}/{yLabel} per degree', fontweight='bold')
   axd["AvgByDegree"].set_xticks(DegreesForPlotting)
   axd["AvgByDegree"].tick_params(axis='y', color="#069AF3", which='both')
   axd["AvgByDegree"].spines['left'].set_color("#069AF3")
   axd2 = axd["AvgByDegree"].twinx()
   axd2.errorbar(DegreesForPlotting, AvgR2, yerr=AvgR2err, label=f'Average R2s', marker='o', color='#F97306', ls='-.')
   axd2.legend(bbox_to_anchor=(0.8,0.05), loc='center')
-  axd2.set_ylabel("R2", c="#F97306", fontweight='bold')
+  axd2.set_ylabel(f'{yLabel}', c="#F97306", fontweight='bold')
   axd2.set_ylim([-1.0, 1.0])
   axd2.spines['left'].set_color("#069AF3")
   axd2.spines['right'].set_color("#F97306")
