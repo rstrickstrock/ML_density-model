@@ -8,9 +8,9 @@ import glob
 
 statisticsFile = 'Stats.csv'
 metric1 = "rmse"
-#metric1 = "mape"
+metric1 = "mape"
 metric2 = "r2"
-metric2 = "mape"
+#metric2 = "mape"
 
 if not os.path.isfile(statisticsFile):
   print(f'Can not find and open \'{statisticsFile}\'. Exit.')
@@ -182,7 +182,7 @@ for deg in range(0, len(degs)):
   axd["METRIC2"].set_xlabel("% of Dataset used for Training", fontweight='bold')
   axd["METRIC2"].set_ylabel(f'{yLabel}', fontweight='bold')
   axd["METRIC2"].set_title(f'Avg. {yLabel} per Training-/Testdata split', fontweight='bold')
-  axd["METRIC2"].set_ylim([([minMETRIC2, maxMETRIC2])
+  axd["METRIC2"].set_ylim([minMETRIC2, maxMETRIC2])
   
   axd['AvgByDegree'].errorbar(DegreesForPlotting, AvgRMSE, yerr=AvgRMSEerr, label=f'Average RMSEs', marker='o', color='#069AF3', ls='-.')
   axd['AvgByDegree'].legend(bbox_to_anchor=(0.22,0.05), loc='center')
@@ -196,15 +196,16 @@ for deg in range(0, len(degs)):
   axd2.errorbar(DegreesForPlotting, AvgR2, yerr=AvgR2err, label=f'Average R2s', marker='o', color='#F97306', ls='-.')
   axd2.legend(bbox_to_anchor=(0.8,0.05), loc='center')
   axd2.set_ylabel(f'{yLabel}', c="#F97306", fontweight='bold')
-  axd2.set_ylim([-1.0, 1.0])
+  axd2.set_ylim([minMETRIC2, maxMETRIC2])
   axd2.spines['left'].set_color("#069AF3")
   axd2.spines['right'].set_color("#F97306")
   axd2.tick_params(axis='y', color="#F97306", which='both')
   
   fig.suptitle(f'Dataset used for Training: {DatasetNames[deg]}', fontweight='bold')
   plt.tight_layout()
+  plt.savefig(f'Ratios_Degrees-vs-{xLabel}_{yLabel}_{DatasetNames[deg]}.png', dpi=300, format='png')
   #break
-plt.show()
+#plt.show()
 
 
 
