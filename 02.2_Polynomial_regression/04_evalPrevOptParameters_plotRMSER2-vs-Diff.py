@@ -320,7 +320,7 @@ if createCombinedDataFile:
                                             "dataset":[thisDataset],
                                             "degree":[thisDegree],
                                             "rmse": [thisRMSE],
-                                            "mape": [thisMAPE]
+                                            "mape": [thisMAPE],
                                             "r2": [thisR2],
                                             "prediction":[thisPrediction],
                                             "target":[707.0],
