@@ -399,6 +399,8 @@ axd["RMSEvsR2"].scatter(subsetSobol1["rmse"], subsetSobol1["r2"], label="Dataset
 axd["RMSEvsR2"].scatter(subsetSobol2["rmse"], subsetSobol2["r2"], label="Dataset: Sobol2", c="#117733")
 axd["RMSEvsR2"].set(xlabel="RMSE", ylabel="R2")
 axd["RMSEvsR2"].set_title("RMSE vs R2", fontweight='bold')
+axd["RMSEvsR2"].set_xlim([10, 100])
+axd["RMSEvsR2"].set_ylim([0.0, 1.05])
 axd["RMSEvsR2"].legend()
 #
 axd["MAPEvsR2"].scatter(subsetGrid1296["mape"], subsetGrid1296["r2"], label="Dataset: Grid1296", c="#332288")
@@ -407,6 +409,8 @@ axd["MAPEvsR2"].scatter(subsetSobol1["mape"], subsetSobol1["r2"], label="Dataset
 axd["MAPEvsR2"].scatter(subsetSobol2["mape"], subsetSobol2["r2"], label="Dataset: Sobol2", c="#117733")
 axd["MAPEvsR2"].set(xlabel="MAPE", ylabel="R2")
 axd["MAPEvsR2"].set_title("MAPE vs R2", fontweight='bold')
+axd["MAPEvsR2"].set_xlim([0.0, 0.13])
+axd["MAPEvsR2"].set_ylim([0.0, 1.05])
 axd["MAPEvsR2"].legend()
 #
 axd["RMSEvsMAPE"].scatter(subsetGrid1296["rmse"], subsetGrid1296["mape"], label="Dataset: Grid1296", c="#332288")
@@ -415,6 +419,8 @@ axd["RMSEvsMAPE"].scatter(subsetSobol1["rmse"], subsetSobol1["mape"], label="Dat
 axd["RMSEvsMAPE"].scatter(subsetSobol2["rmse"], subsetSobol2["mape"], label="Dataset: Sobol2", c="#117733")
 axd["RMSEvsMAPE"].set(xlabel="RMSE", ylabel="MAPE")
 axd["RMSEvsMAPE"].set_title("RMSE vs MAPE", fontweight='bold')
+axd["RMSEvsMAPE"].set_xlim([10, 100])
+axd["RMSEvsMAPE"].set_ylim([0.0, 0.13])
 axd["RMSEvsMAPE"].legend()
 
 
@@ -424,6 +430,7 @@ axd["RMSEvsDiff"].scatter(subsetSobol1["rmse"], subsetSobol1["diff"], label="Dat
 axd["RMSEvsDiff"].scatter(subsetSobol2["rmse"], subsetSobol2["diff"], label="Dataset: Sobol2", c="#117733")
 axd["RMSEvsDiff"].set(xlabel="RMSE", ylabel="Diff")
 axd["RMSEvsDiff"].set_title("RMSE vs Diff (target - pred(opt_params))", fontweight='bold')
+axd["RMSEvsDiff"].set_xlim([10, 100])
 axd["RMSEvsDiff"].legend()
 #
 axd["MAPEvsDiff"].scatter(subsetGrid1296["mape"], subsetGrid1296["diff"], label="Dataset: Grid1296", c="#332288")
@@ -432,6 +439,7 @@ axd["MAPEvsDiff"].scatter(subsetSobol1["mape"], subsetSobol1["diff"], label="Dat
 axd["MAPEvsDiff"].scatter(subsetSobol2["mape"], subsetSobol2["diff"], label="Dataset: Sobol2", c="#117733")
 axd["MAPEvsDiff"].set(xlabel="MAPE", ylabel="Diff")
 axd["MAPEvsDiff"].set_title("MAPE vs Diff (target - pred(opt_params))", fontweight='bold')
+axd["MAPEvsDiff"].set_xlim([0.0, 0.13])
 axd["MAPEvsDiff"].legend()
 #
 axd["R2vsDiff"].scatter(subsetGrid1296["r2"], subsetGrid1296["diff"], label="Dataset: Grid1296", c="#332288")
@@ -440,6 +448,7 @@ axd["R2vsDiff"].scatter(subsetSobol1["r2"], subsetSobol1["diff"], label="Dataset
 axd["R2vsDiff"].scatter(subsetSobol2["r2"], subsetSobol2["diff"], label="Dataset: Sobol2", c="#117733")
 axd["R2vsDiff"].set(xlabel="R2", ylabel="Diff")
 axd["R2vsDiff"].set_title("R2 vs Diff (target - pred(opt_params))", fontweight='bold')
+axd["R2vsDiff"].set_xlim([0.0, 1.05])
 axd["R2vsDiff"].legend()
 
 plt.tight_layout()
