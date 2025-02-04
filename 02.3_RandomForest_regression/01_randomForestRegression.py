@@ -128,10 +128,10 @@ for thisRatio in testSizes:
       modelSobol2 = RandomForestRegressor(n_estimators=thisNumTrees, random_state=rndInt)
       
       ## train/fit the model
-      model1296.fit(X_TRAINs1296, Y_TRAINs1296)
-      model2401.fit(X_TRAINs2401, Y_TRAINs2401)
-      modelSobol1.fit(X_TRAINsSobol1, Y_TRAINsSobol1)
-      modelSobol2.fit(X_TRAINsSobol2, Y_TRAINsSobol2)
+      model1296.fit(X_TRAIN1296, Y_TRAIN1296)
+      model2401.fit(X_TRAIN2401, Y_TRAIN2401)
+      modelSobol1.fit(X_TRAINSobol1, Y_TRAINSobol1)
+      modelSobol2.fit(X_TRAINSobol2, Y_TRAINSobol2)
       
       pickle.dump(model1296, open(f'trained_modelGrid1296_{thisRatio}_{rndInt}_nTrees-{thisNumTrees}.sav', 'wb'))
       pickle.dump(model2401, open(f'trained_modelGrid2401_{thisRatio}_{rndInt}_nTrees-{thisNumTrees}.sav', 'wb'))
@@ -139,10 +139,10 @@ for thisRatio in testSizes:
       pickle.dump(modelSobol2, open(f'trained_modelSobol2_{thisRatio}_{rndInt}_nTrees-{thisNumTrees}.sav', 'wb'))
       
       ## prediction using the test set
-      Y_prediction1296 = model1296.predict(X_TESTs1296)
-      Y_prediction2401 = model2401.predict(X_TESTs2401)
-      Y_predictionSobol1 = modelSobol1.predict(X_TESTsSobol1)
-      Y_predictionSobol2 = modelSobol2.predict(X_TESTsSobol2)
+      Y_prediction1296 = model1296.predict(X_TEST1296)
+      Y_prediction2401 = model2401.predict(X_TEST2401)
+      Y_predictionSobol1 = modelSobol1.predict(X_TESTSobol1)
+      Y_predictionSobol2 = modelSobol2.predict(X_TESTSobol2)
       
       rmse1296 = np.sqrt(mean_squared_error(Y_TEST1296, Y_prediction1296))
       mape1296 = skmape(Y_TEST1296, Y_prediction1296)
