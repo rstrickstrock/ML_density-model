@@ -7,7 +7,7 @@ import glob
 
 
 statisticsFile = 'Stats.csv'
-metric1 = "rmse"
+#metric1 = "rmse"
 metric1 = "mape"
 metric2 = "r2"
 #metric2 = "mape"
@@ -93,8 +93,8 @@ if False:
   for d in range(1, 11):  # Loop through degrees 1 to 10
     print(
         f'& {d} & '
-        f'{np.round(np.mean(subsetGrid1296[subsetGrid1296["degree"] == d]["rmse"].to_numpy()), 4)} & '
-        f'{np.round(np.std(subsetGrid1296[subsetGrid1296["degree"] == d]["rmse"].to_numpy()), 4)} & '
+        f'{np.round(np.mean(subsetGrid1296[subsetGrid1296["degree"] == d]["mape"].to_numpy()), 4)} & '
+        f'{np.round(np.std(subsetGrid1296[subsetGrid1296["degree"] == d]["mape"].to_numpy()), 4)} & '
         f'{np.round(np.mean(subsetGrid1296[subsetGrid1296["degree"] == d]["r2"].to_numpy()), 4)} & '
         f'{np.round(np.std(subsetGrid1296[subsetGrid1296["degree"] == d]["r2"].to_numpy()), 4)} \\\\'
     )
@@ -103,8 +103,8 @@ if False:
   for d in range(1, 11):  # Loop through degrees 1 to 10
     print(
         f'& {d} & '
-        f'{np.round(np.mean(subsetGrid2401[subsetGrid2401["degree"] == d]["rmse"].to_numpy()), 4)} & '
-        f'{np.round(np.std(subsetGrid2401[subsetGrid2401["degree"] == d]["rmse"].to_numpy()), 4)} & '
+        f'{np.round(np.mean(subsetGrid2401[subsetGrid2401["degree"] == d]["mape"].to_numpy()), 4)} & '
+        f'{np.round(np.std(subsetGrid2401[subsetGrid2401["degree"] == d]["mape"].to_numpy()), 4)} & '
         f'{np.round(np.mean(subsetGrid2401[subsetGrid2401["degree"] == d]["r2"].to_numpy()), 4)} & '
         f'{np.round(np.std(subsetGrid2401[subsetGrid2401["degree"] == d]["r2"].to_numpy()), 4)} \\\\'
     )
@@ -113,8 +113,8 @@ if False:
   for d in range(1, 11):  # Loop through degrees 1 to 10
     print(
         f'& {d} & '
-        f'{np.round(np.mean(subsetSobol1[subsetSobol1["degree"] == d]["rmse"].to_numpy()), 4)} & '
-        f'{np.round(np.std(subsetSobol1[subsetSobol1["degree"] == d]["rmse"].to_numpy()), 4)} & '
+        f'{np.round(np.mean(subsetSobol1[subsetSobol1["degree"] == d]["mape"].to_numpy()), 4)} & '
+        f'{np.round(np.std(subsetSobol1[subsetSobol1["degree"] == d]["mape"].to_numpy()), 4)} & '
         f'{np.round(np.mean(subsetSobol1[subsetSobol1["degree"] == d]["r2"].to_numpy()), 4)} & '
         f'{np.round(np.std(subsetSobol1[subsetSobol1["degree"] == d]["r2"].to_numpy()), 4)} \\\\'
     )
@@ -123,13 +123,12 @@ if False:
   for d in range(1, 11):  # Loop through degrees 1 to 10
     print(
         f'& {d} & '
-        f'{np.round(np.mean(subsetSobol2[subsetSobol2["degree"] == d]["rmse"].to_numpy()), 4)} & '
-        f'{np.round(np.std(subsetSobol2[subsetSobol2["degree"] == d]["rmse"].to_numpy()), 4)} & '
+        f'{np.round(np.mean(subsetSobol2[subsetSobol2["degree"] == d]["mape"].to_numpy()), 4)} & '
+        f'{np.round(np.std(subsetSobol2[subsetSobol2["degree"] == d]["mape"].to_numpy()), 4)} & '
         f'{np.round(np.mean(subsetSobol2[subsetSobol2["degree"] == d]["r2"].to_numpy()), 4)} & '
         f'{np.round(np.std(subsetSobol2[subsetSobol2["degree"] == d]["r2"].to_numpy()), 4)} \\\\'
     )
   print('')
-
 
 ## plots
 degs = [5, 5, 6, 6]
