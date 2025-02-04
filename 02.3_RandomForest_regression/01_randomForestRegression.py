@@ -5,7 +5,8 @@ from sklearn.metrics import mean_absolute_percentage_error as skmape
 
 import pandas as pd
 import numpy as np
-from scipy import stats
+import os
+#from scipy import stats
 from matplotlib import pyplot as plt
 
 import pickle

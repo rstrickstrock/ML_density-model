@@ -1,0 +1,7 @@
+Training PolyRegr Models with 0.95% of the dataset.
+
+.
+Traceback (most recent call last):
+  File "01_randomForestRegression.py", line 131, in <module>
+    model1296.fit(X_TRAINs1296, Y_TRAINs1296)
+NameError: name 'X_TRAINs1296' is not defined

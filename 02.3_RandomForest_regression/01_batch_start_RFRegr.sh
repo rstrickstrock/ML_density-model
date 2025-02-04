@@ -4,7 +4,7 @@
 #SBATCH --nodes=1
 #SBATCH --mem 10G
 #SBATCH --time=15:00:00
-#SBATCH --job-name=polyRegr
+#SBATCH --job-name=RFG
 
 python 01_randomForestRegression.py
 
