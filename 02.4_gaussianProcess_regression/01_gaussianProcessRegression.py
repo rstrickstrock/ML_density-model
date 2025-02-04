@@ -217,57 +217,57 @@ for thisRatio in testSizes:
     Y_3predictionSobol2 = model3Sobol2.predict(X_TESTSobol2)
     Y_4predictionSobol2 = model4Sobol2.predict(X_TESTSobol2)
     
-    1rmse1296 = np.sqrt(mean_squared_error(Y_TEST1296, Y_1prediction1296))
-    2rmse1296 = np.sqrt(mean_squared_error(Y_TEST1296, Y_2prediction1296))
-    3rmse1296 = np.sqrt(mean_squared_error(Y_TEST1296, Y_3prediction1296))
-    4rmse1296 = np.sqrt(mean_squared_error(Y_TEST1296, Y_4prediction1296))
-    1mape1296 = skmape(Y_TEST1296, Y_1prediction1296)
-    2mape1296 = skmape(Y_TEST1296, Y_2prediction1296)
-    3mape1296 = skmape(Y_TEST1296, Y_3prediction1296)
-    4mape1296 = skmape(Y_TEST1296, Y_4prediction1296)
-    1r21296 = r2_score(Y_TEST1296, Y_1prediction1296)
-    2r21296 = r2_score(Y_TEST1296, Y_2prediction1296)
-    3r21296 = r2_score(Y_TEST1296, Y_3prediction1296)
-    4r21296 = r2_score(Y_TEST1296, Y_4prediction1296)
+    rmse12961 = np.sqrt(mean_squared_error(Y_TEST1296, Y_1prediction1296))
+    rmse12962 = np.sqrt(mean_squared_error(Y_TEST1296, Y_2prediction1296))
+    rmse12963 = np.sqrt(mean_squared_error(Y_TEST1296, Y_3prediction1296))
+    rmse12964 = np.sqrt(mean_squared_error(Y_TEST1296, Y_4prediction1296))
+    mape12961 = skmape(Y_TEST1296, Y_1prediction1296)
+    mape12962 = skmape(Y_TEST1296, Y_2prediction1296)
+    mape12963 = skmape(Y_TEST1296, Y_3prediction1296)
+    mape12964 = skmape(Y_TEST1296, Y_4prediction1296)
+    r212961 = r2_score(Y_TEST1296, Y_1prediction1296)
+    r212962 = r2_score(Y_TEST1296, Y_2prediction1296)
+    r212963 = r2_score(Y_TEST1296, Y_3prediction1296)
+    r212964 = r2_score(Y_TEST1296, Y_4prediction1296)
       
-    1rmse2401 = np.sqrt(mean_squared_error(Y_TEST2401, Y_1prediction2401))
-    2rmse2401 = np.sqrt(mean_squared_error(Y_TEST2401, Y_2prediction2401))
-    3rmse2401 = np.sqrt(mean_squared_error(Y_TEST2401, Y_3prediction2401))
-    4rmse2401 = np.sqrt(mean_squared_error(Y_TEST2401, Y_4prediction2401))
-    1mape2401 = skmape(Y_TEST2401, Y_1prediction2401)
-    2mape2401 = skmape(Y_TEST2401, Y_2prediction2401)
-    3mape2401 = skmape(Y_TEST2401, Y_3prediction2401)
-    4mape2401 = skmape(Y_TEST2401, Y_4prediction2401)
-    1r22401 = r2_score(Y_TEST2401, Y_1prediction2401)
-    2r22401 = r2_score(Y_TEST2401, Y_2prediction2401)
-    3r22401 = r2_score(Y_TEST2401, Y_3prediction2401)
-    4r22401 = r2_score(Y_TEST2401, Y_4prediction2401)
+    rmse24011 = np.sqrt(mean_squared_error(Y_TEST2401, Y_1prediction2401))
+    rmse24012 = np.sqrt(mean_squared_error(Y_TEST2401, Y_2prediction2401))
+    rmse24013 = np.sqrt(mean_squared_error(Y_TEST2401, Y_3prediction2401))
+    rmse24014 = np.sqrt(mean_squared_error(Y_TEST2401, Y_4prediction2401))
+    mape24011 = skmape(Y_TEST2401, Y_1prediction2401)
+    mape24012 = skmape(Y_TEST2401, Y_2prediction2401)
+    mape24013 = skmape(Y_TEST2401, Y_3prediction2401)
+    mape24014 = skmape(Y_TEST2401, Y_4prediction2401)
+    r224011 = r2_score(Y_TEST2401, Y_1prediction2401)
+    r224012 = r2_score(Y_TEST2401, Y_2prediction2401)
+    r224013 = r2_score(Y_TEST2401, Y_3prediction2401)
+    r224014 = r2_score(Y_TEST2401, Y_4prediction2401)
     
-    1rmseSobol1 = np.sqrt(mean_squared_error(Y_TESTSobol1, Y_1predictionSobol1))
-    2rmseSobol1 = np.sqrt(mean_squared_error(Y_TESTSobol1, Y_2predictionSobol1))
-    3rmseSobol1 = np.sqrt(mean_squared_error(Y_TESTSobol1, Y_3predictionSobol1))
-    4rmseSobol1 = np.sqrt(mean_squared_error(Y_TESTSobol1, Y_4predictionSobol1))
-    1mapeSobol1 = skmape(Y_TESTSobol1, Y_1predictionSobol1)
-    2mapeSobol1 = skmape(Y_TESTSobol1, Y_2predictionSobol1)
-    3mapeSobol1 = skmape(Y_TESTSobol1, Y_3predictionSobol1)
-    4mapeSobol1 = skmape(Y_TESTSobol1, Y_4predictionSobol1)
-    1r2Sobol1 = r2_score(Y_TESTSobol1, Y_1predictionSobol1)
-    2r2Sobol1 = r2_score(Y_TESTSobol1, Y_2predictionSobol1)
-    3r2Sobol1 = r2_score(Y_TESTSobol1, Y_3predictionSobol1)
-    4r2Sobol1 = r2_score(Y_TESTSobol1, Y_4predictionSobol1)
+    rmseSobol11 = np.sqrt(mean_squared_error(Y_TESTSobol1, Y_1predictionSobol1))
+    rmseSobol12 = np.sqrt(mean_squared_error(Y_TESTSobol1, Y_2predictionSobol1))
+    rmseSobol13 = np.sqrt(mean_squared_error(Y_TESTSobol1, Y_3predictionSobol1))
+    rmseSobol14 = np.sqrt(mean_squared_error(Y_TESTSobol1, Y_4predictionSobol1))
+    mapeSobol11 = skmape(Y_TESTSobol1, Y_1predictionSobol1)
+    mapeSobol12 = skmape(Y_TESTSobol1, Y_2predictionSobol1)
+    mapeSobol13 = skmape(Y_TESTSobol1, Y_3predictionSobol1)
+    mapeSobol14 = skmape(Y_TESTSobol1, Y_4predictionSobol1)
+    r2Sobol11 = r2_score(Y_TESTSobol1, Y_1predictionSobol1)
+    r2Sobol12 = r2_score(Y_TESTSobol1, Y_2predictionSobol1)
+    r2Sobol13 = r2_score(Y_TESTSobol1, Y_3predictionSobol1)
+    r2Sobol14 = r2_score(Y_TESTSobol1, Y_4predictionSobol1)
       
-    1rmseSobol2 = np.sqrt(mean_squared_error(Y_TESTSobol2, Y_1predictionSobol2))
-    2rmseSobol2 = np.sqrt(mean_squared_error(Y_TESTSobol2, Y_2predictionSobol2))
-    3rmseSobol2 = np.sqrt(mean_squared_error(Y_TESTSobol2, Y_3predictionSobol2))
-    4rmseSobol2 = np.sqrt(mean_squared_error(Y_TESTSobol2, Y_4predictionSobol2))
-    1mapeSobol2 = skmape(Y_TESTSobol2, Y_1predictionSobol2)
-    2mapeSobol2 = skmape(Y_TESTSobol2, Y_2predictionSobol2)
-    3mapeSobol2 = skmape(Y_TESTSobol2, Y_3predictionSobol2)
-    4mapeSobol2 = skmape(Y_TESTSobol2, Y_4predictionSobol2)
-    1r2Sobol2 = r2_score(Y_TESTSobol2, Y_1predictionSobol2)
-    2r2Sobol2 = r2_score(Y_TESTSobol2, Y_2predictionSobol2)
-    3r2Sobol2 = r2_score(Y_TESTSobol2, Y_3predictionSobol2)
-    4r2Sobol2 = r2_score(Y_TESTSobol2, Y_4predictionSobol2)
+    rmseSobol21 = np.sqrt(mean_squared_error(Y_TESTSobol2, Y_1predictionSobol2))
+    rmseSobol22 = np.sqrt(mean_squared_error(Y_TESTSobol2, Y_2predictionSobol2))
+    rmseSobol23 = np.sqrt(mean_squared_error(Y_TESTSobol2, Y_3predictionSobol2))
+    rmseSobol24 = np.sqrt(mean_squared_error(Y_TESTSobol2, Y_4predictionSobol2))
+    mapeSobol21 = skmape(Y_TESTSobol2, Y_1predictionSobol2)
+    mapeSobol22 = skmape(Y_TESTSobol2, Y_2predictionSobol2)
+    mapeSobol23 = skmape(Y_TESTSobol2, Y_3predictionSobol2)
+    mapeSobol24 = skmape(Y_TESTSobol2, Y_4predictionSobol2)
+    r2Sobol21 = r2_score(Y_TESTSobol2, Y_1predictionSobol2)
+    r2Sobol22 = r2_score(Y_TESTSobol2, Y_2predictionSobol2)
+    r2Sobol23 = r2_score(Y_TESTSobol2, Y_3predictionSobol2)
+    r2Sobol24 = r2_score(Y_TESTSobol2, Y_4predictionSobol2)
     
     dfEntry = pd.DataFrame({"ratio": [thisRatio],
                             "rndint": [rndInt],
@@ -277,9 +277,9 @@ for thisRatio in testSizes:
                             "nu": ["-"],
                             "alpha": ["-"],
                             "periodicity": ["-"],
-                            "rmse": [1rmse1296],
-                            "mape": [1mape1296],
-                            "r2": [1r21296]})
+                            "rmse": [rmse12961],
+                            "mape": [mape12961],
+                            "r2": [r212961]})
     dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
     dfEntry = pd.DataFrame({"ratio": [thisRatio],
                             "rndint": [rndInt],
@@ -289,9 +289,9 @@ for thisRatio in testSizes:
                             "nu": [model2Grid1296.kernel.nu],
                             "alpha": ["-"],
                             "periodicity": ["-"],
-                            "rmse": [2rmse1296],
-                            "mape": [2mape1296],
-                            "r2": [2r21296]})
+                            "rmse": [rmse12962],
+                            "mape": [mape12962],
+                            "r2": [r212962]})
     dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
     dfEntry = pd.DataFrame({"ratio": [thisRatio],
                             "rndint": [rndInt],
@@ -301,9 +301,9 @@ for thisRatio in testSizes:
                             "nu": ["-"],
                             "alpha": [model3Grid1296.kernel.alpha],
                             "periodicity": ["-"],
-                            "rmse": [3rmse1296],
-                            "mape": [3mape1296],
-                            "r2": [3r21296]})
+                            "rmse": [rmse12963],
+                            "mape": [mape12963],
+                            "r2": [r212963]})
     dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
     dfEntry = pd.DataFrame({"ratio": [thisRatio],
                             "rndint": [rndInt],
@@ -313,9 +313,9 @@ for thisRatio in testSizes:
                             "nu": ["-"],
                             "alpha": ["-"],
                             "periodicity": [model4Grid1296.kernel.periodicity],
-                            "rmse": [4rmse1296],
-                            "mape": [4mape1296],
-                            "r2": [4r21296]})
+                            "rmse": [rmse12964],
+                            "mape": [mape12964],
+                            "r2": [r212964]})
     dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
     #
     dfEntry = pd.DataFrame({"ratio": [thisRatio],
@@ -326,9 +326,9 @@ for thisRatio in testSizes:
                             "nu": ["-"],
                             "alpha": ["-"],
                             "periodicity": ["-"],
-                            "rmse": [1rmse2401],
-                            "mape": [1mape2401],
-                            "r2": [1r22401]})
+                            "rmse": [rmse24011],
+                            "mape": [mape24011],
+                            "r2": [r224011]})
     dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
     dfEntry = pd.DataFrame({"ratio": [thisRatio],
                             "rndint": [rndInt],
@@ -338,9 +338,9 @@ for thisRatio in testSizes:
                             "nu": [model2Grid2401.kernel.nu],
                             "alpha": ["-"],
                             "periodicity": ["-"],
-                            "rmse": [2rmse2401],
-                            "mape": [2mape2401],
-                            "r2": [2r22401]})
+                            "rmse": [rmse24012],
+                            "mape": [mape24012],
+                            "r2": [r224012]})
     dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
     dfEntry = pd.DataFrame({"ratio": [thisRatio],
                             "rndint": [rndInt],
@@ -350,9 +350,9 @@ for thisRatio in testSizes:
                             "nu": ["-"],
                             "alpha": [model3Grid2401.kernel.alpha],
                             "periodicity": ["-"],
-                            "rmse": [3rmse2401],
-                            "mape": [3mape2401],
-                            "r2": [3r22401]})
+                            "rmse": [rmse24013],
+                            "mape": [mape24013],
+                            "r2": [r224013]})
     dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
     dfEntry = pd.DataFrame({"ratio": [thisRatio],
                             "rndint": [rndInt],
@@ -362,9 +362,9 @@ for thisRatio in testSizes:
                             "nu": ["-"],
                             "alpha": ["-"],
                             "periodicity": [model4Grid2401.kernel.periodicity],
-                            "rmse": [4rmse2401],
-                            "mape": [4mape2401],
-                            "r2": [4r22401]})
+                            "rmse": [rmse24014],
+                            "mape": [mape24014],
+                            "r2": [r224014]})
     dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
     #
     dfEntry = pd.DataFrame({"ratio": [thisRatio],
@@ -375,9 +375,9 @@ for thisRatio in testSizes:
                             "nu": ["-"],
                             "alpha": ["-"],
                             "periodicity": ["-"],
-                            "rmse": [1rmseSobol1],
-                            "mape": [1mapeSobol1],
-                            "r2": [1r2Sobol1]})
+                            "rmse": [rmseSobol11],
+                            "mape": [mapeSobol11],
+                            "r2": [r2Sobol11]})
     dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
     dfEntry = pd.DataFrame({"ratio": [thisRatio],
                             "rndint": [rndInt],
@@ -387,9 +387,9 @@ for thisRatio in testSizes:
                             "nu": [model2Sobol1.kernel.nu],
                             "alpha": ["-"],
                             "periodicity": ["-"],
-                            "rmse": [2rmseSobol1],
-                            "mape": [2mapeSobol1],
-                            "r2": [2r2Sobol1]})
+                            "rmse": [rmseSobol12],
+                            "mape": [mapeSobol12],
+                            "r2": [r2Sobol12]})
     dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
     dfEntry = pd.DataFrame({"ratio": [thisRatio],
                             "rndint": [rndInt],
@@ -399,9 +399,9 @@ for thisRatio in testSizes:
                             "nu": ["-"],
                             "alpha": [model3Sobol1.kernel.alpha],
                             "periodicity": ["-"],
-                            "rmse": [3rmseSobol1],
-                            "mape": [3mapeSobol1],
-                            "r2": [3r2Sobol1]})
+                            "rmse": [rmseSobol13],
+                            "mape": [mapeSobol13],
+                            "r2": [r2Sobol13]})
     dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
     dfEntry = pd.DataFrame({"ratio": [thisRatio],
                             "rndint": [rndInt],
@@ -411,9 +411,9 @@ for thisRatio in testSizes:
                             "nu": ["-"],
                             "alpha": ["-"],
                             "periodicity": [model4Sobol1.kernel.periodicity],
-                            "rmse": [4rmseSobol1],
-                            "mape": [4mapeSobol1],
-                            "r2": [4r2Sobol1]})
+                            "rmse": [rmseSobol14],
+                            "mape": [mapeSobol14],
+                            "r2": [r2Sobol14]})
     dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
     #
     dfEntry = pd.DataFrame({"ratio": [thisRatio],
@@ -424,9 +424,9 @@ for thisRatio in testSizes:
                             "nu": ["-"],
                             "alpha": ["-"],
                             "periodicity": ["-"],
-                            "rmse": [1rmseSobol2],
-                            "mape": [1mapeSobol2],
-                            "r2": [1r2Sobol2]})
+                            "rmse": [rmseSobol21],
+                            "mape": [mapeSobol21],
+                            "r2": [r2Sobol21]})
     dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
     dfEntry = pd.DataFrame({"ratio": [thisRatio],
                             "rndint": [rndInt],
@@ -436,9 +436,9 @@ for thisRatio in testSizes:
                             "nu": [model2Sobol2.kernel.nu],
                             "alpha": ["-"],
                             "periodicity": ["-"],
-                            "rmse": [2rmseSobol2],
-                            "mape": [2mapeSobol2],
-                            "r2": [2r2Sobol2]})
+                            "rmse": [rmseSobol22],
+                            "mape": [mapeSobol22],
+                            "r2": [r2Sobol22]})
     dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
     dfEntry = pd.DataFrame({"ratio": [thisRatio],
                             "rndint": [rndInt],
@@ -448,9 +448,9 @@ for thisRatio in testSizes:
                             "nu": ["-"],
                             "alpha": [model3Sobol2.kernel.alpha],
                             "periodicity": ["-"],
-                            "rmse": [3rmseSobol2],
-                            "mape": [3mapeSobol2],
-                            "r2": [3r2Sobol2]})
+                            "rmse": [rmseSobol23],
+                            "mape": [mapeSobol23],
+                            "r2": [r2Sobol23]})
     dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
     dfEntry = pd.DataFrame({"ratio": [thisRatio],
                             "rndint": [rndInt],
@@ -460,9 +460,9 @@ for thisRatio in testSizes:
                             "nu": ["-"],
                             "alpha": ["-"],
                             "periodicity": [model4Sobol2.kernel.periodicity],
-                            "rmse": [4rmseSobol2],
-                            "mape": [4mapeSobol2],
-                            "r2": [4r2Sobol2]})
+                            "rmse": [rmseSobol24],
+                            "mape": [mapeSobol24],
+                            "r2": [r2Sobol24]})
     dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
 
   print(f'\n')
