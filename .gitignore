@@ -1,4 +1,7 @@
-grow/*
-NN-pred_Optimization/*
-test_energy_calc/*
 train_energy_NN-model/*
+02.5_GPR_cluster/diffKernels_trained_GPModels
+02.5_GPR_cluster/trained_GPModels
+02.5_GPR_cluster/trained_GPModels_diffKernels_light
+02.5_GPR_cluster/test*
+02.1_Linear_regression/trainedModels
+02.2_Polynomial_regression/trainedModels
