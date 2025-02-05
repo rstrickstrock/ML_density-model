@@ -14,8 +14,6 @@ import numpy as np
 import os
 import shutil
 
-from matplotlib import pyplot as plt
-
 import pickle
 
 testmode = True
