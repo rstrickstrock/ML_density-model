@@ -22,22 +22,26 @@ testmode = True
 
 rndInts = [678, 147, 561, 237, 588, 951, 490, 395, 877, 297, 721, 711, 985, 171, 75, 16, 669, 530, 999, 794, 936, 111, 816, 968, 48, 986, 829, 996, 272, 759, 390, 930, 633, 928, 854, 554, 562, 78, 222, 294, 725, 582, 731, 249, 791, 35, 180, 510, 593, 634]
 
-testSizes = [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95]
+testSizes = [ 0.40, 0.60]
+
+statisticsFileName = 'Stats-7.csv'
+
+
 
 pwd = os.getcwd()
-
-
 ### create current working directory ###
 cwd = os.path.join(pwd, "trainedModels")
 #print(f'{cwd}')
 if os.path.exists(cwd):
   if testmode:
-    shutil.rmtree(cwd)
+    pass
+    #shutil.rmtree(cwd)
   else:
     print(f'\nPATH \'{cwd}\' already exists. \n\nExiting without starting or changing anything.\n')
     exit()
-
-os.mkdir(cwd)
+else:
+  os.mkdir(cwd)
+#os.mkdir(cwd)
 
 
 ## grid sampling 1296
@@ -469,7 +473,6 @@ for thisRatio in testSizes:
   os.chdir(cwd)
 
 os.chdir(pwd)
-statisticsFileName = 'Stats.csv'
 if os.path.exists(statisticsFileName):
   os.remove(statisticsFileName)
   print(f'Removed existing statistics file: \'{statisticsFileName}\'.')
