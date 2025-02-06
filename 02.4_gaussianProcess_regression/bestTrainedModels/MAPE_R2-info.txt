@@ -1,0 +1,62 @@
+Min MAPE Models:
+MAPE: 0.0155205651857708  	R2: 0.9529180642417692
+  Dataset: Sobol2, Kernel: Matern, Ratio: 0.05, RndInt: 759.0
+
+MAPE: 0.0156172697024082  	R2: 0.955026861481532
+  Dataset: Sobol2, Kernel: Matern, Ratio: 0.15, RndInt: 816.0
+
+MAPE: 0.0156377516783481  	R2: 0.9559280799783748
+  Dataset: Sobol2, Kernel: Matern, Ratio: 0.2, RndInt: 816.0
+
+MAPE: 0.0156496141040225  	R2: 0.954060308898484
+  Dataset: Sobol1, Kernel: Matern, Ratio: 0.1, RndInt: 582.0
+
+MAPE: 0.0156992164360053  	R2: 0.9529976207572574
+  Dataset: Sobol1, Kernel: Matern, Ratio: 0.05, RndInt: 111.0
+
+MAPE: 0.0157103051804703  	R2: 0.9526382011167372
+  Dataset: Sobol2, Kernel: Matern, Ratio: 0.1, RndInt: 759.0
+
+MAPE: 0.0157116397016774  	R2: 0.9543772781264892
+  Dataset: Sobol1, Kernel: Matern, Ratio: 0.15, RndInt: 222.0
+
+MAPE: 0.015721204523731  	R2: 0.9531557437615136
+  Dataset: Sobol1, Kernel: Matern, Ratio: 0.05, RndInt: 936.0
+
+MAPE: 0.0157293398737548  	R2: 0.9539923350923162
+  Dataset: Sobol1, Kernel: Matern, Ratio: 0.1, RndInt: 759.0
+
+MAPE: 0.0157377556360681  	R2: 0.9531358011831996
+  Dataset: Sobol1, Kernel: Matern, Ratio: 0.1, RndInt: 510.0
+
+
+Max R2 Models:
+R2: 0.9572192024700836    	MAPE: 0.0166440259421668
+  Dataset: Sobol1, Kernel: Matern, Ratio: 0.5, RndInt: 721.0
+
+R2: 0.957105750255072    	MAPE: 0.0161735198420785
+  Dataset: Sobol1, Kernel: Matern, Ratio: 0.3, RndInt: 951.0
+
+R2: 0.957080385173614    	MAPE: 0.0162365221699954
+  Dataset: Sobol1, Kernel: Matern, Ratio: 0.4, RndInt: 390.0
+
+R2: 0.9569598010834006    	MAPE: 0.0164061109978856
+  Dataset: Sobol1, Kernel: Matern, Ratio: 0.45, RndInt: 390.0
+
+R2: 0.9569127611736774    	MAPE: 0.0169120516223525
+  Dataset: Sobol1, Kernel: Matern, Ratio: 0.4, RndInt: 395.0
+
+R2: 0.9568646660546546    	MAPE: 0.0164581457093106
+  Dataset: Sobol1, Kernel: Matern, Ratio: 0.35, RndInt: 951.0
+
+R2: 0.9568590957498418    	MAPE: 0.0163369755354368
+  Dataset: Sobol1, Kernel: Matern, Ratio: 0.35, RndInt: 111.0
+
+R2: 0.9566928664840774    	MAPE: 0.0159472038639906
+  Dataset: Sobol1, Kernel: Matern, Ratio: 0.35, RndInt: 721.0
+
+R2: 0.9566291380452104    	MAPE: 0.0165731406567353
+  Dataset: Sobol1, Kernel: Matern, Ratio: 0.4, RndInt: 237.0
+
+R2: 0.9566151148214732    	MAPE: 0.0166280153373697
+  Dataset: Sobol1, Kernel: Matern, Ratio: 0.5, RndInt: 390.0
