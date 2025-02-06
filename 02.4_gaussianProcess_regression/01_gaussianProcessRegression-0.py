@@ -457,7 +457,7 @@ for thisRatio in testSizes:
     dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
     dfEntry = pd.DataFrame({"ratio": [thisRatio],
                             "rndint": [rndInt],
-                            "dataset": ["Sobol1"],
+                            "dataset": ["Sobol2"],
                             "kernel": ["ESS"],
                             "length_scale": [model4Sobol2.kernel.length_scale],
                             "nu": ["-"],
