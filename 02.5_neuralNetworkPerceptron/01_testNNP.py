@@ -55,7 +55,9 @@ X_TRAINSobol1 = X_train
 Y_TRAINSobol1 = Y_train
 X_TESTSobol1 = X_test
 Y_TESTSobol1 = Y_test
-
+print(f'{X_TRAINSobol1}')
+print(f'{Y_TRAINSobol1}')
+exit()
 # type change into TensorDataset
 train_data_nn = TensorDataset(X_TRAINSobol1, Y_TRAINSobol1)
 
