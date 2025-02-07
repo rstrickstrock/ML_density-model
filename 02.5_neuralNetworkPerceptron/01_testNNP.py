@@ -55,9 +55,9 @@ X_TRAINSobol1 = torch.tensor(X_train.to_numpy())
 Y_TRAINSobol1 = torch.tensor(Y_train.to_numpy())
 X_TESTSobol1 = torch.tensor(X_test.to_numpy())
 Y_TESTSobol1 = torch.tensor(Y_test.to_numpy())
-print(f'{X_TRAINSobol1}')
-print(f'{Y_TRAINSobol1}')
-exit()
+#print(f'{X_TRAINSobol1}')
+#print(f'{Y_TRAINSobol1}')
+
 # type change into TensorDataset
 train_data_nn = TensorDataset(X_TRAINSobol1, Y_TRAINSobol1)
 
