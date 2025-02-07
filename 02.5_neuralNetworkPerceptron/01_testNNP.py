@@ -51,10 +51,10 @@ print(f'{X_sobol1.shape}')
 print(f'{Y_sobol1.shape}')
 
 X_train, X_test, Y_train, Y_test = train_test_split(X_sobol1, Y_sobol1, test_size=0.05, random_state=29)
-X_TRAINSobol1 = X_train
-Y_TRAINSobol1 = Y_train
-X_TESTSobol1 = X_test
-Y_TESTSobol1 = Y_test
+X_TRAINSobol1 = torch.tensor(X_train)
+Y_TRAINSobol1 = torch.tensor(Y_train)
+X_TESTSobol1 = torch.tensor(X_test)
+Y_TESTSobol1 = torch.tensor(Y_test)
 print(f'{X_TRAINSobol1}')
 print(f'{Y_TRAINSobol1}')
 exit()
