@@ -1,0 +1,10 @@
+cp trained_modelSobol1_0.35_111_Matern.sav /home/rstric2s/current_sim/Paper_Octane-3_NN-predictor/opt_with_GPR-Model/maxR2/maxR2-0/density/trainedModel.sav
+cp trained_modelSobol1_0.35_721_Matern.sav /home/rstric2s/current_sim/Paper_Octane-3_NN-predictor/opt_with_GPR-Model/maxR2/maxR2-1/density/trainedModel.sav
+cp trained_modelSobol1_0.35_951_Matern.sav /home/rstric2s/current_sim/Paper_Octane-3_NN-predictor/opt_with_GPR-Model/maxR2/maxR2-2/density/trainedModel.sav
+cp trained_modelSobol1_0.3_951_Matern.sav /home/rstric2s/current_sim/Paper_Octane-3_NN-predictor/opt_with_GPR-Model/maxR2/maxR2-3/density/trainedModel.sav
+cp trained_modelSobol1_0.4_237_Matern.sav /home/rstric2s/current_sim/Paper_Octane-3_NN-predictor/opt_with_GPR-Model/maxR2/maxR2-4/density/trainedModel.sav
+cp trained_modelSobol1_0.4_390_Matern.sav /home/rstric2s/current_sim/Paper_Octane-3_NN-predictor/opt_with_GPR-Model/maxR2/maxR2-5/density/trainedModel.sav
+cp trained_modelSobol1_0.4_395_Matern.sav /home/rstric2s/current_sim/Paper_Octane-3_NN-predictor/opt_with_GPR-Model/maxR2/maxR2-6/density/trainedModel.sav
+cp trained_modelSobol1_0.45_390_Matern.sav /home/rstric2s/current_sim/Paper_Octane-3_NN-predictor/opt_with_GPR-Model/maxR2/maxR2-7/density/trainedModel.sav
+cp trained_modelSobol1_0.5_390_Matern.sav /home/rstric2s/current_sim/Paper_Octane-3_NN-predictor/opt_with_GPR-Model/maxR2/maxR2-8/density/trainedModel.sav
+cp trained_modelSobol1_0.5_721_Matern.sav /home/rstric2s/current_sim/Paper_Octane-3_NN-predictor/opt_with_GPR-Model/maxR2/maxR2-9/density/trainedModel.sav

@@ -1,0 +1,10 @@
+cp trained_modelSobol1_0.05_111_Matern.sav /home/rstric2s/current_sim/Paper_Octane-3_NN-predictor/opt_with_GPR-Model/minMAPE/minMAPE-0/density/trainedModel.sav
+cp trained_modelSobol1_0.05_936_Matern.sav /home/rstric2s/current_sim/Paper_Octane-3_NN-predictor/opt_with_GPR-Model/minMAPE/minMAPE-1/density/trainedModel.sav
+cp trained_modelSobol1_0.1_510_Matern.sav /home/rstric2s/current_sim/Paper_Octane-3_NN-predictor/opt_with_GPR-Model/minMAPE/minMAPE-2/density/trainedModel.sav
+cp trained_modelSobol1_0.15_222_Matern.sav /home/rstric2s/current_sim/Paper_Octane-3_NN-predictor/opt_with_GPR-Model/minMAPE/minMAPE-3/density/trainedModel.sav
+cp trained_modelSobol1_0.1_582_Matern.sav /home/rstric2s/current_sim/Paper_Octane-3_NN-predictor/opt_with_GPR-Model/minMAPE/minMAPE-4/density/trainedModel.sav
+cp trained_modelSobol1_0.1_759_Matern.sav /home/rstric2s/current_sim/Paper_Octane-3_NN-predictor/opt_with_GPR-Model/minMAPE/minMAPE-5/density/trainedModel.sav
+cp trained_modelSobol2_0.05_759_Matern.sav /home/rstric2s/current_sim/Paper_Octane-3_NN-predictor/opt_with_GPR-Model/minMAPE/minMAPE-6/density/trainedModel.sav
+cp trained_modelSobol2_0.15_816_Matern.sav /home/rstric2s/current_sim/Paper_Octane-3_NN-predictor/opt_with_GPR-Model/minMAPE/minMAPE-7/density/trainedModel.sav
+cp trained_modelSobol2_0.1_759_Matern.sav /home/rstric2s/current_sim/Paper_Octane-3_NN-predictor/opt_with_GPR-Model/minMAPE/minMAPE-8/density/trainedModel.sav
+cp trained_modelSobol2_0.2_816_Matern.sav /home/rstric2s/current_sim/Paper_Octane-3_NN-predictor/opt_with_GPR-Model/minMAPE/minMAPE-9/density/trainedModel.sav
