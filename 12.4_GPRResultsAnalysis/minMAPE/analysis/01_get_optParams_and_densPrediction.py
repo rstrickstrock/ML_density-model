@@ -6,7 +6,7 @@ pwd = "/home/rstric2s/current_sim/Paper_Octane-3_NN-predictor/opt_with_GPR-Model
 
 optDirs = glob.glob(os.path.join(pwd, "minMAPE-*"))
 #print(f'{optDirs}')
-statisticsFileName = os.path.join(pwd, "Stats.csv")
+statisticsFileName = os.path.join(pwd, "StatsDensity.csv")
 
 dfStatistics = pd.DataFrame({"#": [],
                              "SigC": [],
