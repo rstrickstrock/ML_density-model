@@ -104,8 +104,8 @@ axd["EpsCvsEpsH"].scatter(topEpsC, topEpsH, label='top 3 results', marker='x', c
 axd["EpsCvsEpsH"].legend()
 
 plt.tight_layout()
-plt.show()
-#plt.savefig(f'optParams-vs-{diffType}_{thisDir}.png', dpi=300, format='png')
+#plt.show()
+plt.savefig(f'optParams-vs-{diffType}_{thisDir}.png', dpi=300, format='png')
 
 
 #TODO:

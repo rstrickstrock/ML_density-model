@@ -59,4 +59,4 @@ if os.path.exists(statisticsFileName):
   print(f'Removed existing statistics file: \'{statisticsFileName}\'.')
 dfStatistics.to_csv(statisticsFileName)
 print(f'Wrote statistics to file: \'{statisticsFileName}\'.')
-#print(f'{dfStatistics}')
+print(f'{dfStatistics}')
