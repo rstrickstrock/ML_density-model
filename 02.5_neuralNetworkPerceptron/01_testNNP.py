@@ -64,13 +64,14 @@ train_data_nn = TensorDataset(X_TRAINSobol1, Y_TRAINSobol1)
 # setting batch size and dataloader
 batch_size = len(X_TRAINSobol1)
 train_dl = DataLoader(train_data_nn, batch_size, shuffle=True)
-
-# Model structure
+print(f'enumerate(train_dl):\n{enumerate(train_dl)}')
+# Model structure0
 model = net = torch.nn.Sequential(
         torch.nn.Linear(4, 100),
         torch.nn.LeakyReLU(),
         torch.nn.Linear(100, 1),
     )
+print(f'model:\n{model}')
 epoch_count = 0
 
 #study = optuna.create_study(direction='minimize')
@@ -79,13 +80,16 @@ epoch_count = 0
 #print('Best trial:', study.best_trial.params)
 # optimizer = torch.optim.Adam(model.parameters(), lr=lr_optuna)
 
-optimizer = torch.optim.Adam(model.parameters(), lr=0.00002)
-
 num_epochs = 100
 loss_fn = torch.nn.MSELoss()
 
+optimizer = torch.optim.Adam(model.parameters(), lr=0.00002)
+
 for epoch in range(num_epochs):
     for step, (xb, yb) in enumerate(train_dl):
+        print(f'step = {step}')
+        print(f'xb = {xb}')
+        print(f'yb = {yb}')
         pred = model(xb)
 
         loss = loss_fn(pred, yb)
