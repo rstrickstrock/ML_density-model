@@ -1,43 +1,10 @@
 import torch
-#import torch.optim as optim
-import optuna
 from torch.utils.data import TensorDataset, DataLoader
-
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, r2_score
-from sklearn.metrics import mean_absolute_percentage_error as skmape
-
 import pandas as pd
-#import numpy as np
-#import os
-#import shutil
+import os
 
-import pickle
-#print(f'{torch.__version__}')
-
-def objective(trial):
-    # hyper parameter definition
-    lr = trial.suggest_float('lr', 1e-5, 1e-1, log=True)
-    hidden_size = trial.suggest_int('hidden_size', 10, 50)
-    criterion = torch.nn.MSELoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr=lr)
-
-    # model training
-    for epoch in range(100):
-        for inputs, targets in train_dl:
-            optimizer.zero_grad()
-            outputs = model(inputs)
-            loss = criterion(outputs, targets.view(-1, 1))
-            loss.backward()
-            optimizer.step()
-
-    # evaluation of model
-    model.eval()
-    with torch.no_grad():
-        predictions = model(X_TESTSobol1)
-        test_loss = criterion(predictions, Y_TESTSobol1.view(-1, 1)).item()
-
-    return test_loss
+learningRate = 0.001
 
 ## Sobol1 sampling
 data_sobol1 = pd.read_csv('CLEANED_sobolsampling-2048.csv')
@@ -47,49 +14,53 @@ Y_sobol1 = data_sobol1['density']
 #print(f'{data_sobol1}')
 #print(f'{X_sobol1}')
 #print(f'{Y_sobol1}')
-print(f'{X_sobol1.shape}')
-print(f'{Y_sobol1.shape}')
+#print(f'{X_sobol1.shape}')
+#print(f'{Y_sobol1.shape}')
 
 X_train, X_test, Y_train, Y_test = train_test_split(X_sobol1, Y_sobol1, test_size=0.05, random_state=29)
-X_TRAINSobol1 = torch.tensor(X_train.to_numpy())
-Y_TRAINSobol1 = torch.tensor(Y_train.to_numpy())
-X_TESTSobol1 = torch.tensor(X_test.to_numpy())
-Y_TESTSobol1 = torch.tensor(Y_test.to_numpy())
+X_TRAINSobol1 = torch.FloatTensor(X_train.to_numpy())
+Y_TRAINSobol1 = torch.FloatTensor(Y_train.to_numpy())
+X_TESTSobol1 = torch.FloatTensor(X_test.to_numpy())
+Y_TESTSobol1 = torch.FloatTensor(Y_test.to_numpy())
 #print(f'{X_TRAINSobol1}')
 #print(f'{Y_TRAINSobol1}')
 
 # type change into TensorDataset
-train_data_nn = TensorDataset(X_TRAINSobol1, Y_TRAINSobol1)
+TrainSobol1 = TensorDataset(X_TRAINSobol1, Y_TRAINSobol1)
+TestSobol1 = TensorDataset(X_TESTSobol1, Y_TESTSobol1)
 
 # setting batch size and dataloader
-batch_size = len(X_TRAINSobol1)
-train_dl = DataLoader(train_data_nn, batch_size, shuffle=True)
-print(f'enumerate(train_dl):\n{enumerate(train_dl)}')
+batch_size = len(TrainSobol1)
+
+trainSobol1DL = DataLoader(TrainSobol1, batch_size, shuffle=True)
+testSobol1DL = DataLoader(TestSobol1, batch_size, shuffle=True)
+
 # Model structure0
 model = net = torch.nn.Sequential(
-        torch.nn.Linear(4, 100),
+        torch.nn.Linear(4, 512),
         torch.nn.LeakyReLU(),
-        torch.nn.Linear(100, 1),
+        torch.nn.Linear(512, 2048),
+        torch.nn.LeakyReLU(),
+        torch.nn.Linear(2048, 64),
+        torch.nn.LeakyReLU(),
+        torch.nn.Linear(64, 4),
+        torch.nn.LeakyReLU(),
+        torch.nn.Linear(4, 1),
     )
 print(f'model:\n{model}')
-epoch_count = 0
-
-#study = optuna.create_study(direction='minimize')
-#study.optimize(objective, n_trials=10)
-#lr_optuna = study.best_trial.params['lr']
-#print('Best trial:', study.best_trial.params)
-# optimizer = torch.optim.Adam(model.parameters(), lr=lr_optuna)
 
 num_epochs = 100
+print(f'num_epochs: {num_epochs}')
 loss_fn = torch.nn.MSELoss()
+# optimizer = torch.optim.Adam(model.parameters(), lr=lr_optuna)
+optimizer = torch.optim.Adam(model.parameters(), lr=learningRate)
+print(f'learning rate: {learningRate}')
 
-optimizer = torch.optim.Adam(model.parameters(), lr=0.00002)
-
+lossOld = None
+modelNameOld = None
+print(f'\n')
 for epoch in range(num_epochs):
-    for step, (xb, yb) in enumerate(train_dl):
-        print(f'step = {step}')
-        print(f'xb = {xb}')
-        print(f'yb = {yb}')
+    for step, (xb, yb) in enumerate(TrainSobol1):
         pred = model(xb)
 
         loss = loss_fn(pred, yb)
@@ -98,7 +69,48 @@ for epoch in range(num_epochs):
         loss.backward()
         optimizer.step()
 
-    # if epoch%10 == 9:
-    print('Epoch [{}/{}], Loss: {:.4f}'.format(epoch+1, num_epochs, loss.item()))
+    #if epoch%10 == 9:
+    print(f'Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item()}')
+    if epoch == 0:
+        lossOld = float(loss.item())
+        modelName = f'model-{epoch+1}_{lossOld:.4f}.pth'
+        ## saving model
+        torch.save(model.state_dict(), modelName)
+        print(f'\tSaved PyTorch Model State to {modelName}')
+        modelNameOld = modelName
 
-    epoch_count = epoch_count+1
+    if lossOld > float(loss.item()):
+        lossOld = float(loss.item())
+        modelName = f'model-{epoch+1}_{lossOld:.4f}.pth'
+        ## saving model
+        torch.save(model.state_dict(), modelName)
+        print(f'\tSaved PyTorch Model State to {modelName}')
+        ## remove old model file:
+        if os.path.exists(modelNameOld):
+            os.remove(modelNameOld)
+            print(f'\tRemoved old PyTorch Model State {modelNameOld}')
+        modelNameOld = modelName
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
