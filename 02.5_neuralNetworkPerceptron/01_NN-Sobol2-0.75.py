@@ -11,7 +11,7 @@ import numpy as np
 
 testmode = True
 
-dataset = "Grid1296"
+dataset = "Sobol2"
 
 rndInts = [678, 147, 561, 237, 588, 951, 490, 395, 877, 297, 721, 711, 985, 171, 75, 16, 669, 530, 999, 794, 936, 111, 816, 968, 48, 986, 829, 996, 272, 759, 390, 930, 633, 928, 854, 554, 562, 78, 222, 294, 725, 582, 731, 249, 791, 35, 180, 510, 593, 634]
 
@@ -198,7 +198,7 @@ for thisRatio in testSize:
           thisMape = thisMape/i
           thisR2 = thisR2/i
           thisEpoch = epoch+1
-          modelName = f'model-{rndInt}_{thisEpoch}_{thisMape:.4f}_{thisR2:.4f}.pth'
+          modelName = f'model-{thisRatio}-{rndInt}-{dataset}_{thisEpoch}_{thisMape:.4f}_{thisR2:.4f}.pth'
           ## saving model
           torch.save(model.state_dict(), modelName)
           print(f'    Saved PyTorch Model State to {modelName}')
@@ -233,7 +233,7 @@ for thisRatio in testSize:
           thisMape = thisMape/i
           thisR2 = thisR2/i
           thisEpoch = epoch+1
-          modelName = f'model-{rndInt}_{thisEpoch}_{thisMape:.4f}_{thisR2:.4f}.pth'
+          modelName = f'model-{thisRatio}-{rndInt}-{dataset}_{thisEpoch}_{thisMape:.4f}_{thisR2:.4f}.pth'
           ## saving model
           torch.save(model.state_dict(), modelName)
           print(f'    Saved PyTorch Model State to {modelName}')

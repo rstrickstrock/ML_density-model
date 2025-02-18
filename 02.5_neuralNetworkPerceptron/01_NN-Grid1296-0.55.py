@@ -198,7 +198,7 @@ for thisRatio in testSize:
           thisMape = thisMape/i
           thisR2 = thisR2/i
           thisEpoch = epoch+1
-          modelName = f'model-{rndInt}_{thisEpoch}_{thisMape:.4f}_{thisR2:.4f}.pth'
+          modelName = f'model-{thisRatio}-{rndInt}-{dataset}_{thisEpoch}_{thisMape:.4f}_{thisR2:.4f}.pth'
           ## saving model
           torch.save(model.state_dict(), modelName)
           print(f'    Saved PyTorch Model State to {modelName}')
@@ -233,7 +233,7 @@ for thisRatio in testSize:
           thisMape = thisMape/i
           thisR2 = thisR2/i
           thisEpoch = epoch+1
-          modelName = f'model-{rndInt}_{thisEpoch}_{thisMape:.4f}_{thisR2:.4f}.pth'
+          modelName = f'model-{thisRatio}-{rndInt}-{dataset}_{thisEpoch}_{thisMape:.4f}_{thisR2:.4f}.pth'
           ## saving model
           torch.save(model.state_dict(), modelName)
           print(f'    Saved PyTorch Model State to {modelName}')
