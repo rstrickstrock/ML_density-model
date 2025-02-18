@@ -1,0 +1,7 @@
+Dataset: Grid1296
+num_epochs: 100
+learning rate: 0.001
+Traceback (most recent call last):
+  File "01_NN-Grid1296-0.25.py", line 41, in <module>
+    os.mkdir(cwd)
+FileExistsError: [Errno 17] File exists: '/work/rstric2s/current_sim/Paper_Octane-3_NN-predictor/ML_density-model/02.5_neuralNetworkPerceptron/trainedModels'
