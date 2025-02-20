@@ -90,6 +90,7 @@ subsetSobol2 = dfStatistics[dfStatistics["dataset"] == "Sobol2"]
 #print(f'stddev R2: {np.std(subsetSobol2["r2"].to_numpy())}\n')
 
 Kernels = ['RBF', 'Matern', 'RQ', 'ESS']
+#Kernels = ['RBF', 'Matern', 'RQ']
 if False:
   print(f'Grid1296')
   for kernel in Kernels:  # Loop over different kernels
@@ -209,7 +210,7 @@ for nSubset in range(0, len(datasetSubsets)):
   
   fig.suptitle(f'Dataset used for Training: {DatasetNames[nSubset]}', fontweight='bold')
   plt.tight_layout()
-  plt.savefig(f'Ratios_Kernels-vs-{xLabel}_{yLabel}_{DatasetNames[nSubset]}.png', dpi=300, format='png')
+  plt.savefig(f'TESTRatios_Kernels-vs-{xLabel}_{yLabel}_{DatasetNames[nSubset]}.png', dpi=300, format='png')
   #break
 #plt.show()
 
