@@ -1,0 +1,12 @@
+    ## setup model structure
+    model = net = torch.nn.Sequential(
+                    torch.nn.Linear(4, 64),
+                    torch.nn.LeakyReLU(),
+                    torch.nn.Linear(64, 256),
+                    torch.nn.LeakyReLU(),
+                    torch.nn.Linear(256, 64),
+                    torch.nn.LeakyReLU(),
+                    torch.nn.Linear(64, 4),
+                    torch.nn.LeakyReLU(),
+                    torch.nn.Linear(4, 1),
+                   )

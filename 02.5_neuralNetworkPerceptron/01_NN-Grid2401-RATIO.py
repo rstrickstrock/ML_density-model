@@ -20,7 +20,7 @@ testSize = [DIESERRATIO]
 statisticsFileName = f'StatsPart-{dataset}-{testSize[0]}.csv'
 
 learningRate = 0.001
-num_epochs = 100
+num_epochs = 1000
 
 print(f'Dataset: {dataset}')
 print(f'num_epochs: {num_epochs}')
@@ -125,15 +125,11 @@ for thisRatio in testSize:
     
     ## setup model structure
     model = net = torch.nn.Sequential(
-                    torch.nn.Linear(4, 512),
+                    torch.nn.Linear(4, 32),
                     torch.nn.LeakyReLU(),
-                    torch.nn.Linear(512, 2048),
+                    torch.nn.Linear(32, 16),
                     torch.nn.LeakyReLU(),
-                    torch.nn.Linear(2048, 64),
-                    torch.nn.LeakyReLU(),
-                    torch.nn.Linear(64, 4),
-                    torch.nn.LeakyReLU(),
-                    torch.nn.Linear(4, 1),
+                    torch.nn.Linear(16, 1),
                    )
     #print(f'model:\n{model}')
     
@@ -172,32 +168,34 @@ for thisRatio in testSize:
           
         if epoch%10 == 9:
           print(f'  Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item()}')
+          
+        thisRMSE = 0
+        thisMape = 0
+        thisR2 = 0
+        i = 0
+        for tmpStep, (tmpXB, tmpYB) in enumerate(testDL):
+          #print(f'    step: {tmpStep}')
+          #print(f'    tmpXB: {tmpXB}')
+          #print(f'    tmpYB: {tmpYB}')
+          tmpYBNumpy = tmpYB.detach().numpy()
+          tmpPred = model(tmpXB)
+          tmpPredNumpy = tmpPred.detach().numpy()
+          #
+          thisRMSE = thisRMSE + np.sqrt(mean_squared_error(tmpYBNumpy, tmpPredNumpy))
+          thisMape = thisMape + skmape(tmpYBNumpy, tmpPredNumpy)
+          thisR2 = thisR2 + r2_score(tmpYBNumpy, tmpPredNumpy)
+          #print(f'    rmse: {thisRMSE}')
+          #print(f'    mape: {thisMape}')
+          #print(f'    r2: {thisR2}')
+          i = i + 1
+        #print(f'    i:{i}')
+        thisRMSE = thisRMSE/i
+        thisMape = thisMape/i
+        thisR2 = thisR2/i
+        thisEpoch = epoch+1
+        
         if epoch == 0:
-          lossOld = float(loss.item())
-          thisRMSE = 0
-          thisMape = 0
-          thisR2 = 0
-          i = 0
-          for tmpStep, (tmpXB, tmpYB) in enumerate(testDL):
-            #print(f'    step: {tmpStep}')
-            #print(f'    tmpXB: {tmpXB}')
-            #print(f'    tmpYB: {tmpYB}')
-            tmpYBNumpy = tmpYB.detach().numpy()
-            tmpPred = model(tmpXB)
-            tmpPredNumpy = tmpPred.detach().numpy()
-            #
-            thisRMSE = thisRMSE + np.sqrt(mean_squared_error(tmpYBNumpy, tmpPredNumpy))
-            thisMape = thisMape + skmape(tmpYBNumpy, tmpPredNumpy)
-            thisR2 = thisR2 + r2_score(tmpYBNumpy, tmpPredNumpy)
-            #print(f'    rmse: {thisRMSE}')
-            #print(f'    mape: {thisMape}')
-            #print(f'    r2: {thisR2}')
-            i = i + 1
-          #print(f'    i:{i}')
-          thisRMSE = thisRMSE/i
-          thisMape = thisMape/i
-          thisR2 = thisR2/i
-          thisEpoch = epoch+1
+          lossOld = thisMape
           modelName = f'model-{thisRatio}-{rndInt}-{dataset}_{thisEpoch}_{thisMape:.4f}_{thisR2:.4f}.pth'
           ## saving model
           torch.save(model.state_dict(), modelName)
@@ -206,33 +204,12 @@ for thisRatio in testSize:
           print(f'    mape: {thisMape}')
           print(f'    r2: {thisR2}')
           modelNameOld = modelName
-
-        if lossOld > float(loss.item()):
-          lossOld = float(loss.item())
-          thisRMSE = 0
-          thisMape = 0
-          thisR2 = 0
-          i = 0
-          for tmpStep, (tmpXB, tmpYB) in enumerate(testDL):
-            #print(f'    step: {tmpStep}')
-            #print(f'    tmpXB: {tmpXB}')
-            #print(f'    tmpYB: {tmpYB}')
-            tmpYBNumpy = tmpYB.detach().numpy()
-            tmpPred = model(tmpXB)
-            tmpPredNumpy = tmpPred.detach().numpy()
-            #
-            thisRMSE = thisRMSE + np.sqrt(mean_squared_error(tmpYBNumpy, tmpPredNumpy))
-            thisMape = thisMape + skmape(tmpYBNumpy, tmpPredNumpy)
-            thisR2 = thisR2 + r2_score(tmpYBNumpy, tmpPredNumpy)
-            #print(f'    rmse: {thisRMSE}')
-            #print(f'    mape: {thisMape}')
-            #print(f'    r2: {thisR2}')
-            i = i + 1
-          #print(f'    i:{i}')
-          thisRMSE = thisRMSE/i
-          thisMape = thisMape/i
-          thisR2 = thisR2/i
-          thisEpoch = epoch+1
+          optEpoch = thisEpoch
+          optRMSE = thisRMSE
+          optMape = thisMape
+          optR2 = thisR2
+        elif lossOld > thisMape:
+          lossOld = thisMape
           modelName = f'model-{thisRatio}-{rndInt}-{dataset}_{thisEpoch}_{thisMape:.4f}_{thisR2:.4f}.pth'
           ## saving model
           torch.save(model.state_dict(), modelName)
@@ -245,15 +222,23 @@ for thisRatio in testSize:
             os.remove(modelNameOld)
             print(f'      Removed old PyTorch Model State {modelNameOld}')
           modelNameOld = modelName
+          optEpoch = thisEpoch
+          optRMSE = thisRMSE
+          optMape = thisMape
+          optR2 = thisR2
+        else:
+          print(f'    rmse: {thisRMSE} (rejected)')
+          print(f'    mape: {thisMape} (rejected)')
+          print(f'    r2: {thisR2} (rejected)')
     
     dfEntry = pd.DataFrame({"ratio": [thisRatio],
                             "rndint": [rndInt],
                             "dataset": [dataset],
                             "learning_rate": [learningRate],
-                            "epoch": [thisEpoch],
-                            "rmse": [thisRMSE],
-                            "mape": [thisMape],
-                            "r2": [thisR2]})
+                            "epoch": [optEpoch],
+                            "rmse": [optRMSE],
+                            "mape": [optMape],
+                            "r2": [optR2]})
     dfStatistics = pd.concat([dfStatistics, dfEntry], ignore_index=True)
     print(f'\n')
     #break
