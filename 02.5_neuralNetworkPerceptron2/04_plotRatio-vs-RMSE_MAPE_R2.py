@@ -4,7 +4,16 @@ import numpy as np
 
 import os
 import glob
+import sys
 
+try:
+  saveOrShow = sys.argv[1]
+except:
+  saveOrShow = "show"
+if saveOrShow == "save":
+  pass
+else:
+  saveOrShow = "show"
 
 statisticsFile = 'Stats.csv'
 #metric1 = "rmse"
@@ -119,8 +128,10 @@ for nSubset in range(0, len(datasetSubsets)):
   #plt.savefig(f'TESTRatios_Kernels-vs-{xLabel}_{yLabel}_{DatasetNames[nSubset]}.png', dpi=300, format='png')
   #break
 
-#plt.show()
-plt.savefig(f'Ratios-vs-{xLabel}_{yLabel}.png', dpi=300, format='png')
+if saveOrShow == "show":
+  plt.show()
+elif saveOrShow == "save":
+  plt.savefig(f'Ratios-vs-{xLabel}_{yLabel}.png', dpi=300, format='png')
 
 
 

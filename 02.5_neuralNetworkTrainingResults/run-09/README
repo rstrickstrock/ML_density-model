@@ -1,0 +1,9 @@
+    model = net = torch.nn.Sequential(
+                    torch.nn.Linear(4, 8),
+                    torch.nn.LeakyReLU(),
+                    torch.nn.Linear(8, 8),
+                    torch.nn.LeakyReLU(),
+                    torch.nn.Linear(8, 8),
+                    torch.nn.LeakyReLU(),
+                    torch.nn.Linear(8, 1),
+                   )

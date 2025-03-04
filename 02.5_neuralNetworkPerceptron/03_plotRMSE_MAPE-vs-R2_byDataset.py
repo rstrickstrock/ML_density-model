@@ -3,7 +3,16 @@ import pandas as pd
 
 import os
 import glob
+import sys
 
+try:
+  saveOrShow = sys.argv[1]
+except:
+  saveOrShow = "show"
+if saveOrShow == "save":
+  pass
+else:
+  saveOrShow = "show"
 
 statisticsFile = 'Stats.csv'
 #metric1 = "rmse"
@@ -114,8 +123,10 @@ axd["Sobol2"].set_title("Sobol2", fontweight='bold')
 
 plt.tight_layout()
 
-#plt.show()
-plt.savefig(f'{xLabel}-vs-{yLabel}.png', dpi=300, format='png')
+if saveOrShow == "show":
+  plt.show()
+elif saveOrShow == "save":
+  plt.savefig(f'{xLabel}-vs-{yLabel}.png', dpi=300, format='png')
 
 
 

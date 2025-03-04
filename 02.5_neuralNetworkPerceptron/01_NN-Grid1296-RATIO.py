@@ -125,11 +125,13 @@ for thisRatio in testSize:
     
     ## setup model structure
     model = net = torch.nn.Sequential(
-                    torch.nn.Linear(4, 32),
+                    torch.nn.Linear(4, 512),
                     torch.nn.LeakyReLU(),
-                    torch.nn.Linear(32, 16),
+                    torch.nn.Linear(512, 512),
                     torch.nn.LeakyReLU(),
-                    torch.nn.Linear(16, 1),
+                    torch.nn.Linear(512, 4),
+                    torch.nn.LeakyReLU(),
+                    torch.nn.Linear(4, 1),
                    )
     #print(f'model:\n{model}')
     
